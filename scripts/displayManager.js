@@ -10,12 +10,52 @@ function switchScreen(targetScreen) {
 }
 
 function generateQuizzBannerHtml(quizz) {
-    const {title, image} = quizz;
+    const {title, image, id} = quizz;
     const template = (
-        `<div class="quizz-banner" style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat;">
+        `<div id="quizz-${id}"  class="quizz-banner" style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat;">
             <p class="quizz-title">${title}</p>
         </div>`
     )
+    return template;
+}
+
+
+/** 
+ * Generates a proper html for each quizz question
+ * @param {Object} quizz
+ * @return {Array} an array with all the quizz's HTMLs
+ */
+function generateQuizzQuestionsHtml(quizz) {
+    const { questions } = quizz;
+    const allQuestions = questions.map(question => {
+        const answerBoxes = generateQuizAnswerBoxesHtml(question.answers);
+        const questionTemplate = (
+            `<div>
+                <header class="question-header" style="background-color: ${question.color};">
+                    <p>${question.title}</p>
+                </header>
+                <div class="answers-container">
+                    ${answerBoxes}
+                </div>
+            </div>`
+        )
+        return questionTemplate;
+    })
+    return allQuestions;
+}
+
+function generateQuizAnswerBoxesHtml(answers) {
+    let template = "";
+
+    for(answer of answers) {
+        const answerBox = (
+            `<div class="answer-box">
+                <img src="${answer.image}">
+                <p>${answer.text}</p>
+            </div>`
+        )
+        template += answerBox
+    }
     return template;
 }
 
@@ -59,3 +99,4 @@ function manageEmptyUsersQuizzInterface() {
     }
 
 }
+
