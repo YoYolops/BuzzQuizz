@@ -30,10 +30,10 @@ header > h1 {
 }
 
 #app-container {
-    margin: 70px auto 0px auto;
+    margin-top: 70px;
     padding: 40px 20px;
 }
 
-#app-container > div{
+#app-container > div {
     width: 100%;
 }

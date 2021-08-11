@@ -22,3 +22,9 @@
     font-weight: 400;
     font-size: 18px;
 }
+
+.banners-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}

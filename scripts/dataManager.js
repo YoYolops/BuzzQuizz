@@ -11,6 +11,7 @@ async function getServerQuizzes() {
 
 function loadLocallyStoragedQuizzes() {
     const localQuizzes = localStorage.getItem("BuzzQuizz");
+    
     if(localQuizzes) {
         GLOBAL.usersQuizzesIds = JSON.parse(localQuizzes);
     } else {

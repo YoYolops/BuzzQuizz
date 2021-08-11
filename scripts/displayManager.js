@@ -27,8 +27,8 @@ function displayQuizzes() {
         const quizzBanner = generateQuizzBannerHtml(quizz);
         
         isThisAUsersQuizz(quizz.id)
-            ? document.querySelector(".users-quizzes-section").insertAdjacentHTML("beforeend", quizzBanner)
-            : document.querySelector(".all-quizzes-section").insertAdjacentHTML("beforeend", quizzBanner);
+            ? document.querySelector(".users-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner)
+            : document.querySelector(".all-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner);
     }
 }
 
