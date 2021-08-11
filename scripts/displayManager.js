@@ -12,7 +12,7 @@ function switchScreen(targetScreen) {
 function generateQuizzBannerHtml(quizz) {
     const {title, image} = quizz;
     const template = (
-        `<div style="background-image: url(${image})">
+        `<div class="quizz-banner" style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat;">
             <p class="quizz-title">${title}</p>
         </div>`
     )

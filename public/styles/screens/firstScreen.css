@@ -4,3 +4,21 @@
     font-size: 20px;
     font-weight: 700;
 }
+
+.quizz-banner {
+    width: 340px;
+    height: 181px;
+    border-radius: 7px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.quizz-title {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+}
