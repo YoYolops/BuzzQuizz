@@ -12,11 +12,20 @@ function switchScreen(targetScreen) {
 function generateQuizzBannerHtml(quizz) {
     const {title, image, id} = quizz;
     const template = (
-        `<div id="quizz-${id}"  class="quizz-banner" style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat;">
+        `<div id="quizz-${id}"  class="quizz-banner" onclick="startQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat;">
             <p class="quizz-title">${title}</p>
         </div>`
     )
     return template;
+}
+
+function displayQuizzQuestions(quizz) {
+    const questions = generateQuizzQuestionsHtml(quizz);
+    const questionsContainer = document.querySelector(".quizz-container");
+
+    for(question of questions) {
+        questionsContainer.innerHTML += question;
+    }
 }
 
 
@@ -30,7 +39,7 @@ function generateQuizzQuestionsHtml(quizz) {
     const allQuestions = questions.map(question => {
         const answerBoxes = generateQuizAnswerBoxesHtml(question.answers);
         const questionTemplate = (
-            `<div>
+            `<div class="question-container">
                 <header class="question-header" style="background-color: ${question.color};">
                     <p>${question.title}</p>
                 </header>
