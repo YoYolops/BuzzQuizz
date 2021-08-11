@@ -9,7 +9,7 @@ function switchScreen(targetScreen) {
     document.querySelector(`#${idName}`).className = "visible";
 }
 
-function generateQuizzBannerHtml(quizz) {
+function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
     const template = (
         `<div id="quizz-${id}"  class="quizz-banner" onclick="startQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat;">
@@ -73,7 +73,7 @@ function generateQuizAnswerBoxesHtml(answers) {
  */
 function displayQuizzes() {
     for(quizz of GLOBAL.serverQuizzes) {
-        const quizzBanner = generateQuizzBannerHtml(quizz);
+        const quizzBanner = generateQuizzCardHtml(quizz);
         
         isThisAUsersQuizz(quizz.id)
             ? document.querySelector(".users-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner)

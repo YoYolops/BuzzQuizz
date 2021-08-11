@@ -10,4 +10,5 @@ function startQuizz(elementWhoCalled) {
     const quizz = searchQuizzById(quizzID);
     switchScreen("second");
     displayQuizzQuestions(quizz);
+    document.querySelector(".main-banner").style.backgroundImage = `url('${quizz.image}')`;
 }
