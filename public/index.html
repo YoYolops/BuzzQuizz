@@ -13,12 +13,12 @@
     </head>
 
     <body>
-        <header class="page-main-header">
+        <header>
             <h1>BuzzQuizz</h1>
         </header>
 
         <main id="app-container">
-            <div id="first-screen" class="visible">
+            <div id="first-screen" class="hidden">
                 <section class="user-quizzes-section">
                     <h3 class="section-title">Seus Quizzes</h3>
                     <div class="banners-container"></div>
@@ -36,29 +36,63 @@
             </div>
 
             <div id="second-screen" class="hidden">
-                <div class="main-banner"></div>
-                <div class="quizz-container">
-                    <div class="question-container">
-                        <header></header>
-
-                    </div>
-                </div>
+                SEGUNDA
             </div>
 
-            <div id="third-screen" class="hidden">
-                <div class="content">
-                    <span class="subtitle">Comece pelo comeco</span>
-                    <div class="main-step-quizz">
-                        <input type="text" placeholder="Titulo do Seu Quizz">
-                        <input type="text" placeholder="URL da imagem do seu quizz">
-                        <input type="text" placeholder="Quantidade de perguntas do quizz">
-                        <input type="text" placeholder="Quantidade de níveis do quizz">
+            <div id="third-screen hidden">
+                <div class="basic-information-quizz hidden">
+                    <div class="content">
+                        <span class="subtitle">Comece pelo comeco</span>
+                        <div class="main-step-quizz"> 
+                            <input type="text" placeholder="Titulo do Seu Quizz">
+                            <input type="text" placeholder="URL da imagem do seu quizz">
+                            <input type="text" placeholder="Quantidade de perguntas do quizz">
+                            <input type="text" placeholder="Quantidade de níveis do quizz">
+                        </div>
+                        <button class="next-step-button">Prosseguir pra criar perguntas</button>
                     </div>
-                    <button class="next-step-button">Prosseguir pra criar perguntas</button>
                 </div>
+                <div class="asks-about-quizz" class="hidden">
+                    <div class="content">
+                        <span class="subtitle">Crie suas perguntas</span>
+                        <div class="pergunta-create 1">
+                            <div class="pergunta-box">
+                                <h4>Pergunta 1</h4>
+                                <ion-icon name="create-outline"></ion-icon>
+                            </div>
+                            <div class="pergunta-config hidden">
+                                <div class="pergunta">
+                                    <h4>Pergunta 1</h4>
+                                    <input type="text" placeholder="Titulo do Seu Quizz">
+                                    <input type="text" placeholder="URL da imagem do seu quizz">
+                                </div>
+                                <div class="correct-answer">
+                                    <h4>Resposta Correta</h4>
+                                    <input type="text" placeholder="Resposta correta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+                                <div class="wrong-answers">
+                                    <h4>Respostas incorretas</h4>
+                                    <input type="text" placeholder="Resposta incorreta 1">
+                                    <input type="text" placeholder="URL da imagem 1">
+                                    <br>
+                                    <br>
+                                    <input type="text" placeholder="Resposta incorreta 2">
+                                    <input type="text" placeholder="URL da imagem 2">
+                                    <br>
+                                    <br>
+                                    <input type="text" placeholder="Resposta incorreta 3">
+                                    <input type="text" placeholder="URL da imagem 3">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="next-step-button">Prosseguir pra criar niveis</button>
+                </div>   
             </div>
         </main>
     </body>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="../scripts/displayManager.js"></script>
     <script type="text/javascript" src="../scripts/index.js"></script>
 </html>

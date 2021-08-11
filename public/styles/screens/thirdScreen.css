@@ -6,7 +6,11 @@
     margin: auto;
     
 }
-
+.content h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 28px 0px 28px 0px;
+}
 .subtitle {
     text-align: center;
     font-weight: bold;
@@ -43,3 +47,20 @@
     color: #FFF5F4;
     font-size: 18px;
 }
+
+/*Asks about Quizz*/
+
+.pergunta-create {
+    width: 100%;
+}
+.pergunta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    height: 74px;
+    font-size: 20px;
+    margin-bottom: 22px;
+    width: 100%;
+}
+
