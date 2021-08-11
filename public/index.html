@@ -13,23 +13,23 @@
     </head>
 
     <body>
-        <header>
+        <header class="page-main-header">
             <h1>BuzzQuizz</h1>
         </header>
 
         <main id="app-container">
-            <div id="first-screen" class="hidden">
+            <div id="first-screen" class="visible">
                 <section class="user-quizzes-section">
                     <h3 class="section-title">Seus Quizzes</h3>
                     <div class="banners-container"></div>
                 </section>
 
-                <section id="empty-user-quizz" class="hidden">
+                <section id="empty-user-quizz">
                     <p>Você não criou nenhum quizz ainda :(</p>
                     <button>Criar Quizz</button>
                 </section>
 
-                <section class="all-quizzes-section">
+                <section class="all-quizzes-section" class="hidden">
                     <h3 class="section-title">Todos os Quizzes</h3>
                     <div class="banners-container"></div>
                 </section>
@@ -40,7 +40,7 @@
                 <div class="quizz-container"></div>
             </div>
 
-            <div id="third-screen hidden">
+            <div id="third-screen" class="hidden">
                 <div class="basic-information-quizz hidden">
                     <div class="content">
                         <span class="subtitle">Comece pelo comeco</span>
@@ -88,12 +88,16 @@
                             </div>
                         </div>
                         <button class="next-step-button">Prosseguir pra criar niveis</button>
-                </div>   
+                    </div>
+                </div>
             </div>
+            <!-- botões para fins de teste -->
+            <button onclick="switchScreen('first')">ir para tela 1</button>
+            <button onclick="switchScreen('third')">ir para tela 3</button>
         </main>
     </body>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="../scripts/displayManager.js"></script>
     <script type="text/javascript" src="../scripts/index.js"></script>
 </html>
