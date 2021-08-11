@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 @import url('./screens/firstScreen.css');
-
+@import url('./screens/secondScreen.css');
 @import url('./screens/thirdScreen.css');
 
 :root {
