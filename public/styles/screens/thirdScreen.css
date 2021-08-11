@@ -1,0 +1,45 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin: auto;
+    
+}
+
+.subtitle {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 40px;
+
+}
+
+.main-step-quizz {
+    width: 100%;
+
+}
+
+#third-screen input {
+    border: solid 1px #d1d1d1;
+    border-radius: 5px;
+    font-style: italic;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 3%;
+    outline: none;
+}
+
+.next-step-button {
+    height: 54px;
+    width: 367.72px;
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--st-red);
+    border-radius: 15px;
+    text-decoration-color: #FFF5F4;
+    border: none;
+    color: #FFF5F4;
+    font-size: 18px;
+}

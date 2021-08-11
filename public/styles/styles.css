@@ -2,6 +2,8 @@
 
 @import url('./screens/firstScreen.css');
 
+@import url('./screens/thirdScreen.css');
+
 :root {
     --light-grey: #B9B9B9;
     --st-red: #EC362D;
