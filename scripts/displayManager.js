@@ -35,6 +35,7 @@ function displayQuizzes() {
 
 /** 
  * Check if the quiz id matches any locally loaded
+ * @param {Object} quizzID quiz standard object that comes from backend 
  * @return {boolean} true with it matches, false otherwise
  */
 function isThisAUsersQuizz(quizzID) {
@@ -45,6 +46,9 @@ function isThisAUsersQuizz(quizzID) {
 }
 
 
+/** 
+ * Check with there are any users quizzes registered, displayng the appropriate
+ */
 function manageEmptyUsersQuizzInterface() {
     if(GLOBAL.usersQuizzesIds.length === 0) {
         document.querySelector(".user-quizzes-section").className = "hidden";
