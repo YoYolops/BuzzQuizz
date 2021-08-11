@@ -1,0 +1,13 @@
+.question-container {
+    padding: 20px;
+    width: 760px;
+}
+
+.question-header {
+    width: 100%;
+    height: 138px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
