@@ -96,7 +96,7 @@ function isThisAUsersQuizz(quizzID) {
 
 
 /** 
- * Check with there are any users quizzes registered, displayng the appropriate
+ * Check with there are any users quizzes registered, displaying the appropriate one
  */
 function manageEmptyUsersQuizzInterface() {
     if(GLOBAL.usersQuizzesIds.length === 0) {
@@ -106,6 +106,5 @@ function manageEmptyUsersQuizzInterface() {
         document.querySelector("#empty-user-quizz").className = "hidden";
         document.querySelector(".user-quizzes-section").className = "";
     }
-
 }
 
