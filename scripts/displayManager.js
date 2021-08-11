@@ -30,6 +30,7 @@ function displayQuizzes() {
             ? document.querySelector(".users-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner)
             : document.querySelector(".all-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner);
     }
+    manageEmptyUsersQuizzInterface();
 }
 
 /** 
@@ -41,4 +42,16 @@ function isThisAUsersQuizz(quizzID) {
         if(id === quizzID) return true;
     }
     return false;
+}
+
+
+function manageEmptyUsersQuizzInterface() {
+    if(GLOBAL.usersQuizzesIds.length === 0) {
+        document.querySelector(".user-quizzes-section").className = "hidden";
+        document.querySelector("#empty-user-quizz").className = "";
+    } else {
+        document.querySelector("#empty-user-quizz").className = "hidden";
+        document.querySelector(".user-quizzes-section").className = "";
+    }
+
 }
