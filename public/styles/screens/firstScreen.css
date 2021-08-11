@@ -12,7 +12,8 @@
     align-items: center;
     justify-content: center;
     height: 181px;
-    border: 2px dashed var(--light-grey);
+    border: 1px dashed var(--light-grey);
+    border-radius: 5px;
 }
 
 #empty-user-quizz > p {
@@ -21,6 +22,17 @@
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+#empty-user-quizz > button {
+    background-color: inherit;
+    border: 1px dashed var(--st-red);
+    border-radius: 20px;
+    color: var(--st-red);
+    font-size: 22px;
+    height: 40px;
+    width: 151px;
+    cursor: pointer;
 }
 
 .section-title {
