@@ -1,5 +1,6 @@
 #first-screen {
-    padding: 0px 12%;
+    padding: 0px 150px;
+    max-width: 1400px;
 }
 
 #first-screen > section {
@@ -14,6 +15,7 @@
     height: 181px;
     border: 1px dashed var(--light-grey);
     border-radius: 5px;
+    margin: 0px 10px;
 }
 
 #empty-user-quizz > p {
@@ -39,16 +41,25 @@
     color: black;
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin:0px 10px 10px 10px;
+}
+
+.banners-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
 }
 
 .quizz-banner {
-    width: 340px;
     height: 181px;
+    min-width: 300px;
     border-radius: 7px;
-    background-repeat: no-repeat;
-    background-size: cover;
     position: relative;
+    margin: 10px;
+    flex: 1;
+    flex-wrap: wrap;
 }
 
 .quizz-title {
@@ -58,12 +69,6 @@
     color: white;
     font-weight: 400;
     font-size: 18px;
-}
-
-.banners-container {
-    display: flex;
-    justify-content: left;
-    align-items: center;
 }
 
 @media screen and (max-width: 1100px) {

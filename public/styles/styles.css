@@ -19,6 +19,12 @@ body {
     background-color: var(--bg-grey);
 }
 
+#app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .page-main-header {
     width: 100%;
     height: 70px;
