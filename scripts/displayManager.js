@@ -59,7 +59,7 @@ function generateQuizAnswerBoxesHtml(answers) {
     for(answer of answers) {
         const answerBox = (
             `<div class="answer-box">
-                <img src="${answer.image}">
+                <div class="img" style="background-image: url('${answer.image}'); background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
                 <p>${answer.text}</p>
             </div>`
         )
