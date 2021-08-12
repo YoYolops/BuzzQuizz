@@ -4,4 +4,5 @@ const GLOBAL = {
     }),
     serverQuizzes: [], //this is an array of objects
     usersQuizzesIds: [], //this is an array of id strings
+    score: 0
 }

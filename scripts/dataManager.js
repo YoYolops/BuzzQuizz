@@ -40,6 +40,9 @@ function searchQuizzById(id) {
 }
 
 
+
+
+
 /** 
  * Fisher-Yates algorithm, wich randomly shuffles an array (https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
  * @param {String[]} array the array that will me shuffled

@@ -59,7 +59,7 @@ function generateQuizAnswerBoxesHtml(answers) {
 
     for(answer of answersShuffled) {
         const answerBox = (
-            `<div class="answer-box">
+            `<div class="answer-box ${answer.isCorrectAnswer ? "correct" : "incorrect"}" onclick="selectAnswer(this)">
                 <div class="img" style="background-image: url('${answer.image}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-position: center"></div>
                 <p>${answer.text}</p>
             </div>`
@@ -109,3 +109,35 @@ function manageEmptyUsersQuizzInterface() {
     }
 }
 
+/** 
+ * Select a clicked answer, verify if it is correct and calculates the score according
+ * @param {Node} element a clicked .answer-box
+ */
+function selectAnswer(element) {
+    element.classList.contains("correct")
+        ? GLOBAL.score += 1
+        : void(0);
+    
+    colorizeAnswersText(element.parentNode);
+}
+
+/** 
+ * Sets p tags color to red in wrong answer, green in right answers and remove answer-boxes onclick events
+ * @param {Node} element the answer-box-container
+ */
+function colorizeAnswersText(element) {
+    const allAnswerElements = element.querySelectorAll(".answer-box");
+
+    for(answerElement of allAnswerElements) {
+        answerElement.classList.contains("correct")
+            ? answerElement.querySelector("p").style.color = "#009C22"
+            : answerElement.querySelector("p").style.color = "#FF0B0B";
+        
+        freezeOnclickEvent(answerElement);
+    }
+}
+
+
+function removeOnclickEvent(element) {
+    element.onclick = "";
+}
