@@ -10,6 +10,6 @@ function startQuizz(elementWhoCalled) {
     const quizz = searchQuizzById(quizzID);
     switchScreen("second");
     displayQuizzQuestions(quizz);
-    document.querySelector(".main-banner").style.backgroundImage = `url('${quizz.image}')`;
+    document.querySelector(".main-banner").style = `background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.6) 100%), url(${quizz.image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center`;
     document.querySelector(".main-banner-title").textContent = quizz.title;
 }

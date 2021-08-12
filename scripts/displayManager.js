@@ -12,7 +12,7 @@ function switchScreen(targetScreen) {
 function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
     const template = (
-        `<div id="quizz-${id}"  class="quizz-banner" onclick="startQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat">
+        `<div id="quizz-${id}"  class="quizz-banner" onclick="startQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
             <p class="quizz-title">${title}</p>
         </div>`
     )
@@ -59,7 +59,7 @@ function generateQuizAnswerBoxesHtml(answers) {
     for(answer of answers) {
         const answerBox = (
             `<div class="answer-box">
-                <div class="img" style="background-image: url('${answer.image}'); background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                <div class="img" style="background-image: url('${answer.image}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-position: center"></div>
                 <p>${answer.text}</p>
             </div>`
         )
