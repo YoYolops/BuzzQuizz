@@ -11,4 +11,5 @@ function startQuizz(elementWhoCalled) {
     switchScreen("second");
     displayQuizzQuestions(quizz);
     document.querySelector(".main-banner").style.backgroundImage = `url('${quizz.image}')`;
+    document.querySelector(".main-banner-title").textContent = quizz.title;
 }

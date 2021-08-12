@@ -1,11 +1,25 @@
+#second-screen {
+    margin-top: 270px;
+}
+
 .main-banner {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 227px;
     top: 70px;
     left: 0;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.main-banner {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 .quizz-container {
@@ -39,6 +53,7 @@
 
 .question-header > p {
     text-align: center;
+    width: 90%;
 }
 
 .answers-container {
@@ -68,6 +83,15 @@
 }
 
 @media screen and (max-width: 600px) {
+    #second-screen {
+        margin-top: 150px;
+    }
+
+    .main-banner {
+        height: 150px;
+        font-size: 20px;
+    }
+
     .answer-box > .img {
         min-height: 120px;
     }
