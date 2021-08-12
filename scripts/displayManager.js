@@ -113,19 +113,20 @@ function manageEmptyUsersQuizzInterface() {
  * Select a clicked answer, verify if it is correct and calculates the score according
  * @param {Node} element a clicked .answer-box
  */
-function selectAnswer(element) {
-    element.classList.contains("correct")
+function selectAnswer(selectedAnswerElement) {
+    selectedAnswerElement.classList.contains("correct")
         ? GLOBAL.score += 1
         : void(0);
     
-    colorizeAnswersText(element.parentNode);
+    colorizeAnswers(selectedAnswerElement.parentNode, selectedAnswerElement);
 }
 
 /** 
- * Sets p tags color to red in wrong answer, green in right answers and remove answer-boxes onclick events
+ * Sets p tags color to red in wrong answer, green in right answers. remove answer-boxes onclick events
+ * and fades the other answers
  * @param {Node} element the answer-box-container
  */
-function colorizeAnswersText(element) {
+function colorizeAnswers(element, selectedAnswerElement) {
     const allAnswerElements = element.querySelectorAll(".answer-box");
 
     for(answerElement of allAnswerElements) {
@@ -133,7 +134,12 @@ function colorizeAnswersText(element) {
             ? answerElement.querySelector("p").style.color = "#009C22"
             : answerElement.querySelector("p").style.color = "#FF0B0B";
         
-        freezeOnclickEvent(answerElement);
+        answerElement === selectedAnswerElement
+            ? void(0)
+            : answerElement.style.opacity = "0.3";
+
+
+        removeOnclickEvent(answerElement);
     }
 }
 
