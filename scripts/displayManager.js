@@ -55,8 +55,9 @@ function generateQuizzQuestionsHtml(quizz) {
 
 function generateQuizAnswerBoxesHtml(answers) {
     let template = "";
+    const answersShuffled = shuffleArray(answers, answers.length);
 
-    for(answer of answers) {
+    for(answer of answersShuffled) {
         const answerBox = (
             `<div class="answer-box">
                 <div class="img" style="background-image: url('${answer.image}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-position: center"></div>

@@ -38,3 +38,23 @@ function searchQuizzById(id) {
     }
     return null;
 }
+
+
+/** 
+ * Fisher-Yates algorithm, wich randomly shuffles an array (https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+ * @param {String[]} array the array that will me shuffled
+ * @param {Number} length how many items must be shuffled
+ * @return {String[]} the shuffled array with the specified length
+ */
+ function shuffleArray(array, length) {
+    const shuffledArray = [];
+    const inputArrayCopy = Array.from(array);
+
+    for(let i = 0; i < length; i++) {
+        const selectedIndex = Math.floor(Math.random() * (inputArrayCopy.length - 0) + 0);
+        shuffledArray[i] = inputArrayCopy[selectedIndex];
+
+        inputArrayCopy.splice(selectedIndex, 1);
+    }
+    return shuffledArray;
+}
