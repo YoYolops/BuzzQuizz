@@ -60,7 +60,7 @@
     display: grid;
     grid-template-columns: calc(50% - 15px) calc(50% - 15px);
     grid-template-rows: auto;
-    column-gap: 0px !important;
+    column-gap: 0px;
     row-gap: 15px;
     justify-content: space-between;
 }
