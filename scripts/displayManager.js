@@ -180,16 +180,29 @@ function displayEndingBanner() {
 
 function changeToCreateQuestions () {
     const basicInformationQuizz = savingBasicQuizzInformation();
-    console.log(basicInformationQuizz.title.length)
-
-    let numCharOk = basicInformationQuizz.title.length >= 20 && basicInformationQuizz.title.length <= 65;
-    let urlOk = isValidHttpUrl(basicInformationQuizz.image);
-    let nQuestionsOk = basicInformationQuizz.nQuestions >=3;
-    let nLevelsOk = basicInformationQuizz.nLevels >=2;
+    let numCharOk;
+    let urlOk;
+    let nQuestionsOk;
+    let nLevelsOk;
+    
+    if (basicInformationQuizz.title.length >= 20 && basicInformationQuizz.title.length <= 65) {
+        numCharOk = true;
+    }
+    if (isValidHttpUrl(basicInformationQuizz.image)) {
+        urlOk = true;
+        
+    }
+    if (basicInformationQuizz.nQuestions >=3) {
+        nQuestionsOk = true;
+    }
+    if (basicInformationQuizz.nLevels >=2) {
+        nLevelsOk = true;
+    }
 
     if (numCharOk && urlOk && nQuestionsOk && nLevelsOk) {
-        console.log("Pode ir pra proxima etapa");
-    }
+        switchScreen('asks-about-quizz');
+        displayMyQuestionsBox(basicInformationQuizz.nQuestions)
+    }else {alert("Preencha os campos com informacoes validas")}
 
 }
 
@@ -205,3 +218,46 @@ function isValidHttpUrl(string) {
     return url.protocol === "http:" || url.protocol === "https:";
   }
 
+
+  function displayMyQuestionsBox (nQuestions) {
+      const questionBoxLocal = document.querySelector("#asks-about-quizz-screen .questions-setup");
+    for(let i=1; i<=nQuestions;i++) {
+        questionBoxLocal.innerHTML += `<div class="pergunta-create-${i}">
+        <div class="pergunta-box " onclick="perguntaConfigDisplay(this, ${i})">
+            <h4>Pergunta ${i}</h4>
+            <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div class="pergunta-config hidden">
+            <div class="pergunta">
+                <input type="text" placeholder="Titulo do Seu Quizz">
+                <input type="text" placeholder="URL da imagem do seu quizz">
+            </div>
+            <div class="correct-answer">
+                <h4>Resposta Correta</h4>
+                <input type="text" placeholder="Resposta correta">
+                <input type="text" placeholder="URL da imagem">
+            </div>
+            <div class="wrong-answers">
+                <h4>Respostas incorretas</h4>
+                <input type="text" placeholder="Resposta incorreta 1">
+                <input type="text" placeholder="URL da imagem 1">
+                <br>
+                <br>
+                <input type="text" placeholder="Resposta incorreta 2">
+                <input type="text" placeholder="URL da imagem 2">
+                <br>
+                <br>
+                <input type="text" placeholder="Resposta incorreta 3">
+                <input type="text" placeholder="URL da imagem 3">
+            </div>
+        </div>
+    </div>`
+    }
+
+  }
+
+  function perguntaConfigDisplay (elemento, questionNumber) {
+      document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("hidden");
+      document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("showing");
+
+  }
