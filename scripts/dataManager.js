@@ -1,4 +1,3 @@
-
 async function getServerQuizzes() {
     const response = await GLOBAL.api.get("/").catch(error => {
         console.log("Erro na requisição");

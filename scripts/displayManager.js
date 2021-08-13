@@ -7,7 +7,10 @@ function switchScreen(targetScreen) {
     const idName = targetScreen + "-screen";
     document.querySelector(".visible").className = "hidden";
     document.querySelector(`#${idName}`).className = "visible";
+
+    document.querySelector(`#${idName}`).scrollIntoView();
 }
+
 
 function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
