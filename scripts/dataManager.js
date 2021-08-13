@@ -62,7 +62,7 @@ function searchQuizzById(id) {
     return shuffledArray;
 }
 function savingBasicQuizzInformation () {
-    const findBasicInformation = document.querySelector(".basic-information-quizz .main-step-quizz ");
+    const findBasicInformation = document.querySelector("#basic-information-quizz-screen .main-step-quizz ");
 
     const basicInformation = {
         title: findBasicInformation.querySelectorAll("input")[0].value,
@@ -71,7 +71,49 @@ function savingBasicQuizzInformation () {
         nLevels: Number(findBasicInformation.querySelectorAll("input")[3].value)
     }
 
-    return basicInformation
+    return basicInformation;
+}
+
+function savingQuizzQuestions (nQuestions) {
+    nQuestions = 5;
+    const MyQuizzQuestions = [];
+    let questions = [];
+    let answers =[];
+    const findMyQuizzQuestions = document.querySelector(".questions-setup");
+    
+    
+    for(let i=1; i<= nQuestions ; i++) {
+
+        answers = [
+            {
+                text: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .correct-answer input`)[0].value,
+                image: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .correct-answer input`)[1].value,
+                isCorrectAnswer: true
+            }
+    ];
+        for(let j=0; j<3; j+=2) {
+
+            const wrongAnswer = {
+                text: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .wrong-answers input`)[j].value,
+                image: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .wrong-answers input`)[j+1].value,
+                isCorrectAnswer: false
+            }
+            if (wrongAnswer.text !==null || wrongAnswer.image !==null) {
+                answers.push(wrongAnswer);
+            }
+            
+        }
+        questions = [
+                {
+                title: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .pergunta input`)[0].value,
+                color: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .pergunta input`)[1].value,
+                answers: answers
+                }
+            ]
+
+        MyQuizzQuestions.push(questions)
+    }
+    console.log(MyQuizzQuestions);
 }
 
 

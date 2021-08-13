@@ -18,7 +18,7 @@
 
 }
 
-.main-step-quizz {
+.main-step-quizz, .questions-setup {
     width: 100%;
 
 }
@@ -64,6 +64,7 @@
     font-size: 20px;
     margin-bottom: 22px;
     width: 100%;
+    cursor: pointer;
 }
 
 /*Level Create*/

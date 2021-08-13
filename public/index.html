@@ -22,7 +22,7 @@
 
                 <section id="empty-user-quizz">
                     <p>Você não criou nenhum quizz ainda :(</p>
-                    <button onclick="switchScreen('third')">Criar Quizz</button>
+                    <button onclick="switchScreen('basic-information-quizz')">Criar Quizz</button>
                 </section>
 
                 <section class="all-quizzes-section" class="hidden">
@@ -38,8 +38,8 @@
                 <div class="quizz-container"></div>
             </div>
 
-            <div id="third-screen" class="hidden">
-                <div class="basic-information-quizz">
+            <div id="third-screen">
+                <div id="basic-information-quizz-screen" class="hidden">
                     <div class="content">
                         <span class="subtitle">Comece pelo comeco</span>
                         <div class="main-step-quizz"> 
@@ -51,44 +51,17 @@
                         <button class="next-step-button" onclick="changeToCreateQuestions()">Prosseguir pra criar perguntas</button>
                     </div>
                 </div>
-                <div class="asks-about-quizz hidden">
+                <div id="asks-about-quizz-screen" class="hidden">
                     <div class="content">
                         <span class="subtitle">Crie suas perguntas</span>
-                        <div class="pergunta-create 1">
-                            <div class="pergunta-box hidden">
-                                <h4>Pergunta 1</h4>
-                                <ion-icon name="create-outline"></ion-icon>
-                            </div>
-                            <div class="pergunta-config ">
-                                <div class="pergunta">
-                                    <h4>Pergunta 1</h4>
-                                    <input type="text" placeholder="Titulo do Seu Quizz">
-                                    <input type="text" placeholder="URL da imagem do seu quizz">
-                                </div>
-                                <div class="correct-answer">
-                                    <h4>Resposta Correta</h4>
-                                    <input type="text" placeholder="Resposta correta">
-                                    <input type="text" placeholder="URL da imagem">
-                                </div>
-                                <div class="wrong-answers">
-                                    <h4>Respostas incorretas</h4>
-                                    <input type="text" placeholder="Resposta incorreta 1">
-                                    <input type="text" placeholder="URL da imagem 1">
-                                    <br>
-                                    <br>
-                                    <input type="text" placeholder="Resposta incorreta 2">
-                                    <input type="text" placeholder="URL da imagem 2">
-                                    <br>
-                                    <br>
-                                    <input type="text" placeholder="Resposta incorreta 3">
-                                    <input type="text" placeholder="URL da imagem 3">
-                                </div>
-                            </div>
+                        <div class="questions-setup">
+                            
                         </div>
-                        <button class="next-step-button">Prosseguir pra criar niveis</button>
+                        
+                        <button class="next-step-button" onclick="savingQuizzQuestions()">Prosseguir pra criar niveis</button>
                     </div>
                 </div>
-                <div class="level-setup hidden">
+                <div id="level-setup hidden-screen" class="hidden">
                     <div class="content">
                         <span class="subtitle">Agora, decida os niveis</span>
                         <div class="level-create 1">
