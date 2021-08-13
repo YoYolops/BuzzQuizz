@@ -39,8 +39,20 @@ function searchQuizzById(id) {
     return null;
 }
 
+function resetGlobalRunnigQuizzInfo(newObject) {
+    if(newObject) { GLOBAL.runningQuizzInfo = newObject }
+    else {
+        GLOBAL.runningQuizzInfo = {
+            score: 0,
+            quizz: {},
+            answeredAmmount: 0
+        }
+    }
+}
 
-
+function resetSecondScreenInterface() {
+    document.querySelector("#second-screen > .quizz-container").innerHTML = "";
+}
 
 
 /** 

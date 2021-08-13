@@ -9,8 +9,13 @@ function startQuizz(elementWhoCalled) {
     const quizzID = elementWhoCalled.id.split("-")[1];
     const quizz = searchQuizzById(quizzID);
     
-    GLOBAL.runningQuizzInfo.score = 0;
-    GLOBAL.runningQuizzInfo.quizz = quizz;
+    resetGlobalRunnigQuizzInfo({
+        score: 0,
+        quizz: quizz,
+        answeredAmmount: 0,
+    });
+
+    resetSecondScreenInterface();
 
     switchScreen("second");
     displayQuizzQuestions(quizz);
