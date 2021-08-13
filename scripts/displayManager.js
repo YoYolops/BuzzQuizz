@@ -147,3 +147,48 @@ function colorizeAnswers(element, selectedAnswerElement) {
 function removeOnclickEvent(element) {
     element.onclick = "";
 }
+
+/*Third-screen*/
+
+/*Change to create-questions*/
+
+function changeToCreateQuestions () {
+    const basicInformationQuizz = savingBasicQuizzInformation();
+    console.log(basicInformationQuizz.title.length)
+    let numCharOk;
+    let urlOk;
+    let nQuestionsOk;
+    let nLevelsOk;
+    
+    if (basicInformationQuizz.title.length >= 20 && basicInformationQuizz.title.length <= 65) {
+        numCharOk = true;
+    }
+    if (isValidHttpUrl(basicInformationQuizz.image)) {
+        urlOk = true;
+        
+    }
+    if (basicInformationQuizz.nQuestions >=3) {
+        nQuestionsOk = true;
+    }
+    if (basicInformationQuizz.nLevels >=2) {
+        nLevelsOk = true;
+    }
+
+    if (numCharOk && urlOk && nQuestionsOk && nLevelsOk) {
+        console.log("Pode ir pra proxima etapa");
+    }
+
+}
+
+function isValidHttpUrl(string) {
+    let url;
+    
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+

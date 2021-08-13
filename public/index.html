@@ -39,7 +39,7 @@
             </div>
 
             <div id="third-screen" class="hidden">
-                <div class="basic-information-quizz hidden">
+                <div class="basic-information-quizz">
                     <div class="content">
                         <span class="subtitle">Comece pelo comeco</span>
                         <div class="main-step-quizz"> 
@@ -48,7 +48,7 @@
                             <input type="text" placeholder="Quantidade de perguntas do quizz">
                             <input type="text" placeholder="Quantidade de níveis do quizz">
                         </div>
-                        <button class="next-step-button">Prosseguir pra criar perguntas</button>
+                        <button class="next-step-button" onclick="changeToCreateQuestions()">Prosseguir pra criar perguntas</button>
                     </div>
                 </div>
                 <div class="asks-about-quizz hidden">
@@ -88,7 +88,7 @@
                         <button class="next-step-button">Prosseguir pra criar niveis</button>
                     </div>
                 </div>
-                <div class="level-setup">
+                <div class="level-setup hidden">
                     <div class="content">
                         <span class="subtitle">Agora, decida os niveis</span>
                         <div class="level-create 1">
@@ -96,7 +96,7 @@
                                 <h4>Nivel 1</h4>
                                 <ion-icon name="create-outline"></ion-icon>
                             </div>
-                            <div class="level0config">
+                            <div class="level-config hidden">
                                 <h4>Nivel 1</h4>
                                 <input type="text" placeholder="Título do nível">
                                 <input type="text" placeholder="% de acerto mínima">
@@ -121,4 +121,5 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="../scripts/displayManager.js"></script>
     <script type="text/javascript" src="../scripts/index.js"></script>
+    <script type="text/javascript" src="../scripts/dataManager.js"></script>
 </html>

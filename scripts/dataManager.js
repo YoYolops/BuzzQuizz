@@ -61,3 +61,18 @@ function searchQuizzById(id) {
     }
     return shuffledArray;
 }
+function savingBasicQuizzInformation () {
+    const findBasicInformation = document.querySelector(".basic-information-quizz .main-step-quizz ");
+
+    const basicInformation = {
+        title: findBasicInformation.querySelectorAll("input")[0].value,
+        image: findBasicInformation.querySelectorAll("input")[1].value,
+        nQuestions: Number(findBasicInformation.querySelectorAll("input")[2].value),
+        nLevels: Number(findBasicInformation.querySelectorAll("input")[3].value)
+    }
+
+    return basicInformation
+}
+
+
+
