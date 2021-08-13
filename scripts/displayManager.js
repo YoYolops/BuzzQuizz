@@ -29,7 +29,7 @@ function displayQuizzQuestions(quizz) {
 }
 
 
-/** 
+/**
  * Generates a proper html for each quizz question
  * @param {Object} quizz
  * @return {Array} an array with all the quizz's HTMLs
@@ -148,6 +148,8 @@ function removeOnclickEvent(element) {
     element.onclick = "";
 }
 
+
+
 /*Third-screen*/
 
 /*Change to create-questions*/
@@ -155,24 +157,11 @@ function removeOnclickEvent(element) {
 function changeToCreateQuestions () {
     const basicInformationQuizz = savingBasicQuizzInformation();
     console.log(basicInformationQuizz.title.length)
-    let numCharOk;
-    let urlOk;
-    let nQuestionsOk;
-    let nLevelsOk;
-    
-    if (basicInformationQuizz.title.length >= 20 && basicInformationQuizz.title.length <= 65) {
-        numCharOk = true;
-    }
-    if (isValidHttpUrl(basicInformationQuizz.image)) {
-        urlOk = true;
-        
-    }
-    if (basicInformationQuizz.nQuestions >=3) {
-        nQuestionsOk = true;
-    }
-    if (basicInformationQuizz.nLevels >=2) {
-        nLevelsOk = true;
-    }
+
+    let numCharOk = basicInformationQuizz.title.length >= 20 && basicInformationQuizz.title.length <= 65;
+    let urlOk = isValidHttpUrl(basicInformationQuizz.image);
+    let nQuestionsOk = basicInformationQuizz.nQuestions >=3;
+    let nLevelsOk = basicInformationQuizz.nLevels >=2;
 
     if (numCharOk && urlOk && nQuestionsOk && nLevelsOk) {
         console.log("Pode ir pra proxima etapa");
