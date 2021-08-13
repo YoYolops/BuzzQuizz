@@ -29,21 +29,21 @@ function displayQuizzQuestions(quizz) {
 }
 
 
-/** 
+/**
  * Generates a proper html for each quizz question
  * @param {Object} quizz
  * @return {Array} an array with all the quizz's HTMLs
  */
 function generateQuizzQuestionsHtml(quizz) {
     const { questions } = quizz;
-    const allQuestions = questions.map(question => {
+    const allQuestions = questions.map((question, index) => {
         const answerBoxes = generateQuizAnswerBoxesHtml(question.answers);
         const questionTemplate = (
-            `<div class="question-container">
+            `<div class="question-container" id="question-${index}">
                 <header class="question-header" style="background-color: ${question.color};">
                     <p>${question.title}</p>
                 </header>
-                <div class="answers-container">
+                <div class="answers-container" onclick="questionScrollManager(this)">
                     ${answerBoxes}
                 </div>
             </div>`
@@ -138,15 +138,30 @@ function colorizeAnswers(element, selectedAnswerElement) {
             ? void(0)
             : answerElement.style.opacity = "0.3";
 
-
         removeOnclickEvent(answerElement);
     }
 }
 
+/** 
+ * Decides if the aapp should scroll to the next question based on what's being displayed on screen
+ * @param {Node} questionElement the question-container last answered
+ */
+function questionScrollManager(questionElement) {
+    const questionNumber = Number(questionElement.parentNode.id.split("-")[1]);
+    const nextElement = document.querySelector(`#question-${questionNumber + 1}`);
+
+    setTimeout(() => {
+        if(nextElement && window.pageYOffset < nextElement.scrollHeight + 200) {
+            nextElement.scrollIntoView()
+        }
+    }, 2000)
+}
 
 function removeOnclickEvent(element) {
     element.onclick = "";
 }
+
+
 
 /*Third-screen*/
 
