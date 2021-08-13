@@ -114,11 +114,18 @@ function manageEmptyUsersQuizzInterface() {
  * @param {Node} element a clicked .answer-box
  */
 function selectAnswer(selectedAnswerElement) {
+    GLOBAL.runningQuizzInfo.answeredAmmount += 1;
+
     selectedAnswerElement.classList.contains("correct")
-        ? GLOBAL.score += 1
+        ? GLOBAL.runningQuizzInfo.score += 1
         : void(0);
-    
+
+        
     colorizeAnswers(selectedAnswerElement.parentNode, selectedAnswerElement);
+
+    GLOBAL.runningQuizzInfo.answeredAmmount === GLOBAL.runningQuizzInfo.quizz.questions.length
+        ? displayEndingBanner()
+        : void(0);
 }
 
 /** 
@@ -161,6 +168,10 @@ function removeOnclickEvent(element) {
     element.onclick = "";
 }
 
+
+function displayEndingBanner() {
+    console.log(manufactureEndingQuizzData());
+}
 
 
 /*Third-screen*/

@@ -61,6 +61,8 @@ function searchQuizzById(id) {
     }
     return shuffledArray;
 }
+
+
 function savingBasicQuizzInformation () {
     const findBasicInformation = document.querySelector(".basic-information-quizz .main-step-quizz ");
 
@@ -74,5 +76,26 @@ function savingBasicQuizzInformation () {
     return basicInformation
 }
 
+/** 
+ * Manufacture the necessary data to display the ending banner, based on users hits
+ * @return {object} all the data needed to render the final stats
+ */
+function manufactureEndingQuizzData() {
+    const score = GLOBAL.runningQuizzInfo.score;
+    const questionsAmmount = GLOBAL.runningQuizzInfo.quizz.questions.length;
+    const hitPercentage = Math.floor((100/questionsAmmount) * score);
 
+    let properLevel;
+    for(level of GLOBAL.runningQuizzInfo.quizz.levels) {
+        if(hitPercentage >= Number(level.minValue)) { properLevel = level }
+        else { break };
+    }
 
+    properLevel = properLevel || GLOBAL.runningQuizzInfo.quizz.levels[0]; // if not achieved any goal, return the first level by default
+
+    return ({
+        title: `${hitPercentage}% de acerto: ${properLevel.title}`,
+        image: properLevel.image,
+        text: properLevel.text,
+    })
+}

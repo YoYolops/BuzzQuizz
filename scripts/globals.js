@@ -4,7 +4,9 @@ const GLOBAL = {
     }),
     serverQuizzes: [], //this is an array of objects
     usersQuizzesIds: [], //this is an array of id strings
-    runningQuizz: { // The quizz currently being played by the user
+    runningQuizzInfo: { // The quizz currently being played by the user
         score: 0,
+        quizz: {},
+        answeredAmmount: 0,
     }
 }

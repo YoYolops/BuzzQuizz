@@ -9,7 +9,8 @@ function startQuizz(elementWhoCalled) {
     const quizzID = elementWhoCalled.id.split("-")[1];
     const quizz = searchQuizzById(quizzID);
     
-    GLOBAL.runningQuizz.score = 0;
+    GLOBAL.runningQuizzInfo.score = 0;
+    GLOBAL.runningQuizzInfo.quizz = quizz;
 
     switchScreen("second");
     displayQuizzQuestions(quizz);
