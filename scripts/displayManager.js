@@ -154,6 +154,7 @@ function colorizeAnswers(element, selectedAnswerElement) {
  * @param {Node} questionElement the question-container last answered
  */
 function questionScrollManager(questionElement) {
+    
     const questionNumber = Number(questionElement.parentNode.id.split("-")[1]);
     const nextElement = document.querySelector(`#question-${questionNumber + 1}`);
 
@@ -170,7 +171,19 @@ function removeOnclickEvent(element) {
 
 
 function displayEndingBanner() {
-    console.log(manufactureEndingQuizzData());
+    const endingData = manufactureEndingQuizzData();
+
+    const endingBannerTemplate = (
+        `<div class="ending-banner-container">
+            <header class="ending-banner-header"><p>${endingData.title}</p></header>
+            <div class="ending-banner-main-content">
+                <img src="${endingData.image}">
+                <p>${endingData.text}</p>
+            </div>
+        </div>`
+    )
+
+    document.querySelector(".quizz-container").innerHTML += endingBannerTemplate;
 }
 
 

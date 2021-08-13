@@ -71,6 +71,23 @@
     margin-bottom: 8px;
 }
 
+.ending-banner-container {
+    max-width: 760px;
+    padding: 20px;
+}
+
+.ending-banner-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ending-banner-header > p {
+    text-align: center;
+    color: white;
+    font-size: 23px;
+}
+
 @media screen and (max-width: 1100px) {
     .question-container {
         padding: 15px;
