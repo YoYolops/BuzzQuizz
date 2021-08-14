@@ -19,6 +19,10 @@ body {
     background-color: var(--bg-grey);
 }
 
+p {
+    word-break: break-all;
+}
+
 #app-container {
     display: flex;
     flex-direction: column;

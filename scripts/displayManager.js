@@ -3,7 +3,7 @@
  * Makes a target div visible and hide all the others;
  * @param {String}  targetScreen the screen that should be displayed (first, second or third)
  */
-function switchScreen(targetScreen) {
+ function switchScreen(targetScreen) {
     const idName = targetScreen + "-screen";
     document.querySelector(".visible").className = "hidden";
     document.querySelector(`#${idName}`).className = "visible";
@@ -183,9 +183,9 @@ function displayEndingBanner() {
                 <img src="${endingData.image}">
                 <p>${endingData.text}</p>
             </div>
-            <button onclick="startQuizz(${currentQuizzId})">Reiniciar Quizz</button>
-            <button onclick="switchScreen('first')">Voltar pra home</button>
-        </div>`
+        </div>
+        <button onclick="startQuizz(${currentQuizzId})">Reiniciar Quizz</button>
+        <button id="home-link-button"  onclick="switchScreen('first')">Voltar pra home</button>`
     )
 
     document.querySelector(".quizz-container").innerHTML += endingBannerTemplate;
