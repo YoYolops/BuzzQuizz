@@ -18,7 +18,7 @@
 
 }
 
-.main-step-quizz, .questions-setup {
+.main-step-quizz, .questions-setup, .levels-setup {
     width: 100%;
 
 }
@@ -51,10 +51,8 @@
 
 /*Asks about Quizz*/
 
-.pergunta-create, .level-create{
-    width: 100%;
-    cursor: pointer;
-}
+
+
 .pergunta-box, .level-box {
     display: flex;
     align-items: center;
@@ -66,6 +64,8 @@
     width: 100%;
     cursor: pointer;
 }
+
+
 
 /*Level Create*/
 
