@@ -1,7 +1,12 @@
 void async function startApp() {
+    toggleLoadingScreen();
     console.log("oi")
     await getServerQuizzes();
     displayQuizzes();
+
+    setTimeout(() => { /* só pra tela de loading durar mais tempo na tela */
+        toggleLoadingScreen();
+    }, 2000)
 }();
 
 function selectQuizz(elementWhoCalled) {

@@ -11,6 +11,13 @@
     document.querySelector("html").scrollIntoView();
 }
 
+function toggleLoadingScreen() {
+    const loadingScreen = document.querySelector("#loading-screen-container");
+
+    loadingScreen.className === "hidden"
+        ? loadingScreen.className = ""
+        : loadingScreen.className = "hidden"
+}
 
 function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
