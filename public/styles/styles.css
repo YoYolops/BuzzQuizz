@@ -20,7 +20,7 @@ body {
 }
 
 p {
-    word-break: break-all;
+    word-break: break-all;/* a galera coloca uns nome non sense e precisa disso pra n quebrar o layout */
 }
 
 #app-container {
