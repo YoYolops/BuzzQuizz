@@ -51,10 +51,8 @@
 
 /*Asks about Quizz*/
 
-.pergunta-create, .level-create{
-    width: 100%;
-    cursor: pointer;
-}
+
+
 .pergunta-box, .level-box {
     display: flex;
     align-items: center;
@@ -66,6 +64,8 @@
     width: 100%;
     cursor: pointer;
 }
+
+
 
 /*Level Create*/
 

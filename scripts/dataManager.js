@@ -74,8 +74,8 @@ function savingBasicQuizzInformation () {
     return basicInformation;
 }
 
-function savingQuizzQuestions (nQuestions) {
-    nQuestions = 5;
+function savingQuizzQuestions () {
+    let nQuestions = savingBasicQuizzInformation ().nQuestions;
     const MyQuizzQuestions = [];
     let questions = [];
     let answers =[];
@@ -89,32 +89,71 @@ function savingQuizzQuestions (nQuestions) {
                 text: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .correct-answer input`)[0].value,
                 image: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .correct-answer input`)[1].value,
                 isCorrectAnswer: true
+            },
+            {
+                text: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .wrong-answers input`)[0].value,
+                image: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .wrong-answers input`)[1].value,
+                isCorrectAnswer: false
             }
+            
     ];
-        for(let j=0; j<3; j+=2) {
+        for(let j=2; j<=4; j+=2) {
 
             const wrongAnswer = {
                 text: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .wrong-answers input`)[j].value,
                 image: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .wrong-answers input`)[j+1].value,
                 isCorrectAnswer: false
             }
-            if (wrongAnswer.text !==null || wrongAnswer.image !==null) {
+            if (wrongAnswer.text !=='' || wrongAnswer.image !=='') {
                 answers.push(wrongAnswer);
             }
             
         }
-        questions = [
-                {
+        questions = {
                 title: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .pergunta input`)[0].value,
                 color: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .pergunta input`)[1].value,
                 answers: answers
                 }
-            ]
+            
 
         MyQuizzQuestions.push(questions)
     }
     console.log(MyQuizzQuestions);
+    validateQuestions(MyQuizzQuestions);
 }
 
+
+
+function validateQuestions(MyQuizzQuestions) {
+
+    let questionsOk = true;
+    MyQuizzQuestions.forEach((elemento) => {
+          
+        if(elemento.title.length < 20) {
+            console.log("erro no titulo");
+            questionsOk = false;
+        }
+        
+        elemento.answers.forEach((resposta) => {
+            if(resposta.text.length === 0) {
+                console.log("erro texto");
+                questionsOk = false;
+            }
+            if(isValidHttpUrl(resposta.image) ===false) {
+                console.log("erro na imagem");
+                questionsOk = false;
+            }
+        }
+        )
+        
+        
+    });
+    console.log(questionsOk)
+    
+
+
+
+    
+}
 
 
