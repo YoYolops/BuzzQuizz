@@ -4,9 +4,13 @@ void async function startApp() {
     displayQuizzes();
 }();
 
-
-function startQuizz(elementWhoCalled) {
+function selectQuizz(elementWhoCalled) {
     const quizzID = elementWhoCalled.id.split("-")[1];
+    startQuizz(quizzID);
+}
+
+
+function startQuizz(quizzID) {
     const quizz = searchQuizzById(quizzID);
     
     resetGlobalRunnigQuizzInfo({

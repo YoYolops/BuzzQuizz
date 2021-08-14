@@ -31,7 +31,7 @@ function storeUsersQuizzesLocally() {
  */
 function searchQuizzById(id) {
     for(quizz of GLOBAL.serverQuizzes) {
-        if(quizz.id.toString() === id) {
+        if(quizz.id.toString() === id || Number(quizz.id) === id) {
             return quizz;
         }
     }

@@ -15,7 +15,7 @@ function switchScreen(targetScreen) {
 function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
     const template = (
-        `<div id="quizz-${id}"  class="quizz-banner" onclick="startQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
+        `<div id="quizz-${id}"  class="quizz-banner" onclick="selectQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
             <p class="quizz-title">${title}</p>
         </div>`
     )
@@ -160,12 +160,11 @@ function questionScrollManager(questionElement) {
     
     const questionNumber = Number(questionElement.parentNode.id.split("-")[1]);
     const nextElement = document.querySelector(`#question-${questionNumber + 1}`);
-
     setTimeout(() => {
-        if(nextElement) {
+        if(nextElement && nextElement.querySelector(".answer-box").onclick) { //Only scrolls if the next elements exists and are not selected yet
             nextElement.scrollIntoView()
         }
-    }, 2000)
+    }, 2000)    
 }
 
 function removeOnclickEvent(element) {
@@ -175,6 +174,7 @@ function removeOnclickEvent(element) {
 
 function displayEndingBanner() {
     const endingData = manufactureEndingQuizzData();
+    const currentQuizzId = GLOBAL.runningQuizzInfo.quizz.id;
 
     const endingBannerTemplate = (
         `<div class="ending-banner-container">
@@ -183,6 +183,8 @@ function displayEndingBanner() {
                 <img src="${endingData.image}">
                 <p>${endingData.text}</p>
             </div>
+            <button onclick="startQuizz(${currentQuizzId})">Reiniciar Quizz</button>
+            <button onclick="switchScreen('first')">Voltar pra home</button>
         </div>`
     )
 
@@ -220,7 +222,7 @@ function changeToCreateQuestions () {
     }
 
     if (numCharOk && urlOk && nQuestionsOk && nLevelsOk) {
-        switchScreen('asks-about-quizz');
+        switchScreen('asks-about-quizz'); //Não usar switch screen para troca de componentes dentro das screens
         displayMyQuestionsBox(basicInformationQuizz.nQuestions)
     }else {alert("Preencha os campos com informacoes validas")}
 
@@ -239,7 +241,7 @@ function isValidHttpUrl(string) {
   }
 
 
-function displayMyQuestionsBox (nQuestions) {
+  function displayMyQuestionsBox (nQuestions) {
       const questionBoxLocal = document.querySelector("#asks-about-quizz-screen .questions-setup");
     for(let i=1; i<=nQuestions;i++) {
         questionBoxLocal.innerHTML += `<div class="pergunta-create-${i}">
@@ -274,45 +276,10 @@ function displayMyQuestionsBox (nQuestions) {
     </div>`
     }
 
-}
+  }
 
-function perguntaConfigDisplay (elemento, questionNumber) {
+  function perguntaConfigDisplay (elemento, questionNumber) {
       document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("hidden");
       document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("showing");
 
-}
-
-function levelsScreenDisplay (questionsOk) {
-    if (questionsOk ===true) {
-        document.querySelector("#level-setup-screen").classList.remove("hidden")
-        document.querySelector("#asks-about-quizz-screen").className = "hidden";
-        levelsDisplay();
-    }else{alert("Problemas nos campos")}
-    
-}
-
-function levelsDisplay () {
-    const basicInformationQuizz = savingBasicQuizzInformation();
-    let levelQtd = basicInformationQuizz.nLevels;
-    let LevelBoxLocal = document.querySelector("#level-setup-screen .levels-setup");
-    LevelBoxLocal.innerHTML = '';
-
-    for(let i=1; i<=levelQtd;i++) {
-        LevelBoxLocal.innerHTML += `<div class="level-create-${i}">
-        <div class="level-box" onclick="levelConfigDisplay(${i})">
-            <h4>Nivel ${i}</h4>
-            <ion-icon name="create-outline"></ion-icon>
-        </div>
-        <div class="level-config hidden">
-            <input type="text" placeholder="Título do nível">
-            <input type="text" placeholder="% de acerto mínima">
-            <input type="text" placeholder="URL da imagem do nível">
-            <input type="text" placeholder="Descrição do nível">
-        </div>
-    </div>`
-    }
-}
-function levelConfigDisplay (levelNumber) {
-    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("hidden");
-    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("showing");
-}
+  }
