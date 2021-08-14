@@ -183,7 +183,7 @@ function validateQuestions(MyQuizzQuestions) {
         
         
     });
-    console.log(questionsOk)
-    
+
+    levelsScreenDisplay(questionsOk);
     
 }

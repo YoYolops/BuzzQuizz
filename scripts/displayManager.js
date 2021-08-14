@@ -235,7 +235,7 @@ function isValidHttpUrl(string) {
   }
 
 
-  function displayMyQuestionsBox (nQuestions) {
+function displayMyQuestionsBox (nQuestions) {
       const questionBoxLocal = document.querySelector("#asks-about-quizz-screen .questions-setup");
     for(let i=1; i<=nQuestions;i++) {
         questionBoxLocal.innerHTML += `<div class="pergunta-create-${i}">
@@ -270,10 +270,45 @@ function isValidHttpUrl(string) {
     </div>`
     }
 
-  }
+}
 
-  function perguntaConfigDisplay (elemento, questionNumber) {
+function perguntaConfigDisplay (elemento, questionNumber) {
       document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("hidden");
       document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("showing");
 
-  }
+}
+
+function levelsScreenDisplay (questionsOk) {
+    if (questionsOk ===true) {
+        document.querySelector("#level-setup-screen").classList.remove("hidden")
+        document.querySelector("#asks-about-quizz-screen").className = "hidden";
+        levelsDisplay();
+    }else{alert("Problemas nos campos")}
+    
+}
+
+function levelsDisplay () {
+    const basicInformationQuizz = savingBasicQuizzInformation();
+    let levelQtd = basicInformationQuizz.nLevels;
+    let LevelBoxLocal = document.querySelector("#level-setup-screen .levels-setup");
+    LevelBoxLocal.innerHTML = '';
+
+    for(let i=1; i<=levelQtd;i++) {
+        LevelBoxLocal.innerHTML += `<div class="level-create-${i}">
+        <div class="level-box" onclick="levelConfigDisplay(${i})">
+            <h4>Nivel ${i}</h4>
+            <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div class="level-config hidden">
+            <input type="text" placeholder="Título do nível">
+            <input type="text" placeholder="% de acerto mínima">
+            <input type="text" placeholder="URL da imagem do nível">
+            <input type="text" placeholder="Descrição do nível">
+        </div>
+    </div>`
+    }
+}
+function levelConfigDisplay (levelNumber) {
+    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("hidden");
+    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("showing");
+}
