@@ -8,7 +8,7 @@ function switchScreen(targetScreen) {
     document.querySelector(".visible").className = "hidden";
     document.querySelector(`#${idName}`).className = "visible";
 
-    document.querySelector(`#${idName}`).scrollIntoView();
+    document.querySelector("html").scrollIntoView();
 }
 
 
@@ -162,7 +162,7 @@ function questionScrollManager(questionElement) {
     const nextElement = document.querySelector(`#question-${questionNumber + 1}`);
 
     setTimeout(() => {
-        if(nextElement && window.pageYOffset < nextElement.scrollHeight + 200) {
+        if(nextElement) {
             nextElement.scrollIntoView()
         }
     }, 2000)
@@ -187,6 +187,10 @@ function displayEndingBanner() {
     )
 
     document.querySelector(".quizz-container").innerHTML += endingBannerTemplate;
+
+    setTimeout(() => {
+        document.querySelector(".ending-banner-container").scrollIntoView();
+    }, 2000)
 }
 
 
