@@ -1,4 +1,3 @@
-
 async function getServerQuizzes() {
     const response = await GLOBAL.api.get("/").catch(error => {
         console.log("Erro na requisição");
@@ -39,8 +38,20 @@ function searchQuizzById(id) {
     return null;
 }
 
+function resetGlobalRunnigQuizzInfo(newObject) {
+    if(newObject) { GLOBAL.runningQuizzInfo = newObject }
+    else {
+        GLOBAL.runningQuizzInfo = {
+            score: 0,
+            quizz: {},
+            answeredAmmount: 0
+        }
+    }
+}
 
-
+function resetSecondScreenInterface() {
+    document.querySelector("#second-screen > .quizz-container").innerHTML = "";
+}
 
 
 /** 
@@ -61,6 +72,8 @@ function searchQuizzById(id) {
     }
     return shuffledArray;
 }
+
+
 function savingBasicQuizzInformation () {
     const findBasicInformation = document.querySelector("#basic-information-quizz-screen .main-step-quizz ");
 
@@ -122,7 +135,29 @@ function savingQuizzQuestions () {
     validateQuestions(MyQuizzQuestions);
 }
 
+/** 
+ * Manufacture the necessary data to display the ending banner, based on users hits
+ * @return {object} all the data needed to render the final stats
+ */
+function manufactureEndingQuizzData() {
+    const score = GLOBAL.runningQuizzInfo.score;
+    const questionsAmmount = GLOBAL.runningQuizzInfo.quizz.questions.length;
+    const hitPercentage = Math.floor((100/questionsAmmount) * score);
 
+    let properLevel;
+    for(level of GLOBAL.runningQuizzInfo.quizz.levels) {
+        if(hitPercentage >= Number(level.minValue)) { properLevel = level }
+        else { break };
+    }
+
+    properLevel = properLevel || GLOBAL.runningQuizzInfo.quizz.levels[0]; // if not achieved any goal, return the first level by default
+
+    return ({
+        title: `${hitPercentage}% de acerto: ${properLevel.title}`,
+        image: properLevel.image,
+        text: properLevel.text,
+    })
+}
 
 function validateQuestions(MyQuizzQuestions) {
 
@@ -150,10 +185,5 @@ function validateQuestions(MyQuizzQuestions) {
     });
     console.log(questionsOk)
     
-
-
-
     
 }
-
-

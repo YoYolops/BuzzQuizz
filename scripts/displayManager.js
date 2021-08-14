@@ -7,7 +7,10 @@ function switchScreen(targetScreen) {
     const idName = targetScreen + "-screen";
     document.querySelector(".visible").className = "hidden";
     document.querySelector(`#${idName}`).className = "visible";
+
+    document.querySelector(`#${idName}`).scrollIntoView();
 }
+
 
 function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
@@ -114,11 +117,18 @@ function manageEmptyUsersQuizzInterface() {
  * @param {Node} element a clicked .answer-box
  */
 function selectAnswer(selectedAnswerElement) {
+    GLOBAL.runningQuizzInfo.answeredAmmount += 1;
+
     selectedAnswerElement.classList.contains("correct")
-        ? GLOBAL.score += 1
+        ? GLOBAL.runningQuizzInfo.score += 1
         : void(0);
-    
+
+        
     colorizeAnswers(selectedAnswerElement.parentNode, selectedAnswerElement);
+
+    GLOBAL.runningQuizzInfo.answeredAmmount === GLOBAL.runningQuizzInfo.quizz.questions.length
+        ? displayEndingBanner()
+        : void(0);
 }
 
 /** 
@@ -147,6 +157,7 @@ function colorizeAnswers(element, selectedAnswerElement) {
  * @param {Node} questionElement the question-container last answered
  */
 function questionScrollManager(questionElement) {
+    
     const questionNumber = Number(questionElement.parentNode.id.split("-")[1]);
     const nextElement = document.querySelector(`#question-${questionNumber + 1}`);
 
@@ -161,6 +172,22 @@ function removeOnclickEvent(element) {
     element.onclick = "";
 }
 
+
+function displayEndingBanner() {
+    const endingData = manufactureEndingQuizzData();
+
+    const endingBannerTemplate = (
+        `<div class="ending-banner-container">
+            <header class="ending-banner-header"><p>${endingData.title}</p></header>
+            <div class="ending-banner-main-content">
+                <img src="${endingData.image}">
+                <p>${endingData.text}</p>
+            </div>
+        </div>`
+    )
+
+    document.querySelector(".quizz-container").innerHTML += endingBannerTemplate;
+}
 
 
 /*Third-screen*/
