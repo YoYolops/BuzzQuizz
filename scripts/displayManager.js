@@ -164,7 +164,6 @@ function colorizeAnswers(element, selectedAnswerElement) {
  * @param {Node} questionElement the question-container last answered
  */
 function questionScrollManager(questionElement) {
-    
     const questionNumber = Number(questionElement.parentNode.id.split("-")[1]);
     const nextElement = document.querySelector(`#question-${questionNumber + 1}`);
     setTimeout(() => {
