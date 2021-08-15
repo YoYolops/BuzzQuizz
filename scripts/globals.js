@@ -8,5 +8,6 @@ const GLOBAL = {
         score: 0,
         quizz: {},
         answeredAmmount: 0,
-    }
+    },
+    myQuizzId: 0
 }

@@ -365,8 +365,8 @@ function savingmyQuizzId (quizzEnviado) {
     storeUsersQuizzesLocally();
 
     myCardThirdScreen(quizzEnviado);
+
+    GLOBAL.myQuizzId = meuQuizz.id;
     
-
-
     alert("Seu Quizz foi Salvo")
 }

@@ -333,3 +333,7 @@ function quizzFinishedDisplay() {
     document.querySelector("#quizz-finished-screen").classList.remove("hidden")
     document.querySelector("#level-setup-screen").className = "hidden";
 }
+
+function seeMyQuizz() {
+    startQuizz(GLOBAL.myQuizzId);
+}
