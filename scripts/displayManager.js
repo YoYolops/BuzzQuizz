@@ -329,3 +329,7 @@ function myCardThirdScreen (quizz) {
     const meuCard = generateQuizzCardHtml(quizz);
     document.querySelector(".meu-card").innerHTML = meuCard;
 }
+function quizzFinishedDisplay() {
+    document.querySelector("#quizz-finished-screen").classList.remove("hidden")
+    document.querySelector("#level-setup-screen").className = "hidden";
+}
