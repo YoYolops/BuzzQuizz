@@ -205,10 +205,41 @@ function savingQuizzLevels () {
         levels.push(level);
     }
     console.log(levels);
-
+    validateLevels(levels);
 
 }
 
-function validateLevels () {
+function validateLevels (levels) {
 
+    let levelsOk = true;
+    let menorValor = false;
+    
+    levels.forEach((elemento) => {
+
+        if(elemento.title.length < 10) {
+            console.log("problema titulo");
+            levelsOk = false;
+        }
+
+        if (elemento.minValue < 0 && elemento.minValue > 100) {
+            console.log("problema value");
+            levelsOk = false;
+        }else if (elemento.minValue === 0){
+            menorValor = true;
+        }
+
+        if(elemento.text.length < 30) {
+            console.log("problema descricao");
+            levelsOk = false;
+
+        }
+        if(isValidHttpUrl(elemento.image) ===false) {
+            console.log("problema imagem");
+            questionsOk = false;
+        }
+    });
+
+    if (menorValor && levelsOk) {
+        console.log('Leveis ok, pode passar');
+    }else { console.log("deu ruim")}
 }
