@@ -187,3 +187,28 @@ function validateQuestions(MyQuizzQuestions) {
     levelsScreenDisplay(questionsOk);
     
 }
+
+function savingQuizzLevels () {
+    let nLevels = savingBasicQuizzInformation ().nLevels;
+    let levels = [];
+    let level;
+    const findMyQuizzLevels = document.querySelector(".levels-setup");
+
+    for(let i=1; i<= nLevels ; i++) {
+
+        level = {
+			title: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[0].value,
+			image: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[2].value,
+			text: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[3].value,
+			minValue: Number(findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[1].value)
+		}
+        levels.push(level);
+    }
+    console.log(levels);
+
+
+}
+
+function validateLevels () {
+
+}
