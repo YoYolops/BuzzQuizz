@@ -56,6 +56,7 @@
 .quizz-banner {
     height: 181px;
     min-width: 280px;
+    max-width: 350px;
     border-radius: 7px;
     position: relative;
     margin: 10px;

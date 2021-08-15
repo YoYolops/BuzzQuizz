@@ -87,7 +87,7 @@ function displayQuizzes() {
         const quizzBanner = generateQuizzCardHtml(quizz);
         
         isThisAUsersQuizz(quizz.id)
-            ? document.querySelector(".users-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner)
+            ? document.querySelector(".user-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner)
             : document.querySelector(".all-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner);
     }
     manageEmptyUsersQuizzInterface();

@@ -1,5 +1,6 @@
 void async function startApp() {
     toggleLoadingScreen();
+    loadLocallyStoragedQuizzes();
     console.log("oi")
     await getServerQuizzes();
     displayQuizzes();
@@ -8,6 +9,10 @@ void async function startApp() {
         toggleLoadingScreen();
     }, 2000)
 }();
+
+function refreshApp() {
+    history.go();
+}
 
 function selectQuizz(elementWhoCalled) {
     const quizzID = elementWhoCalled.id.split("-")[1];
