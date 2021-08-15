@@ -281,6 +281,14 @@ var quizzFinished = {};
 
 function upandoQuizzToServ () {
     const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes", quizzFinished);
-    promise.then(() => {alert("Seu Quizz foi Salvo")});
+    promise.then(savingmyQuizzId);
     promise.catch(() => {alert("Nao conseguimos enviar seu quizz, tente novamente mais tarde")});
+}
+
+function savingmyQuizzId (quizzEnviado) {
+
+    const meuId = quizzEnviado.data.id;
+    
+
+    alert("Seu Quizz foi Salvo")
 }
