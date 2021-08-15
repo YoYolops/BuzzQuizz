@@ -20,8 +20,8 @@ function loadLocallyStoragedQuizzes() {
 }
 
 
-function storeUsersQuizzesLocally() {
-    const storeQuizzes = JSON.stringify(GLOBAL.usersQuizzesIds);
+function storeUsersQuizzesLocally(quizz) {
+    const storeQuizzes = JSON.stringify(quizz);
     localStorage.setItem("BuzzQuizz", storeQuizzes);
 }
 
