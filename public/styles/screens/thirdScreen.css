@@ -49,6 +49,19 @@
     cursor: pointer;
 }
 
+.back-to-home {
+    background-color: none ;
+    color: #818181;
+    height: 54px;
+    width: 367.72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
 /*Asks about Quizz*/
 
 
@@ -67,5 +80,5 @@
 
 
 
-/*Level Create*/
+
 

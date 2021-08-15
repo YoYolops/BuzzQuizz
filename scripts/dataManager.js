@@ -282,7 +282,20 @@ function validateLevels (levels) {
 var quizzFinished = {};
 
 function upandoQuizzToServ () {
+    toggleLoadingScreen();
     const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes", quizzFinished);
-    promise.then(() => {alert("Seu Quizz foi Salvo")});
+    promise.then(savingmyQuizzId);
     promise.catch(() => {alert("Nao conseguimos enviar seu quizz, tente novamente mais tarde")});
+    toggleLoadingScreen();
+}
+
+function savingmyQuizzId (quizzEnviado) {
+    const meuQuizz = quizzEnviado.data;
+    storeUsersQuizzesLocally(meuQuizz);
+
+    myCardThirdScreen(quizzEnviado);
+    
+
+
+    alert("Seu Quizz foi Salvo")
 }

@@ -324,3 +324,8 @@ function levelConfigDisplay (levelNumber) {
     document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("hidden");
     document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("showing");
 } 
+
+function myCardThirdScreen (quizz) {
+    const meuCard = generateQuizzCardHtml(quizz);
+    document.querySelector(".meu-card").innerHTML = meuCard;
+}
