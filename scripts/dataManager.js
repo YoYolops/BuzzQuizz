@@ -74,7 +74,11 @@ function resetSecondScreenInterface() {
     return shuffledArray;
 }
 
-
+/** 
+ * Checks if a string is a valid hexadecimal color acepted by CSS
+ * @param hexadecimalString {String} the string to be checked
+ * @return {boolean} true if it is valid, false otherwise
+ */
 function isValidHexadecimalColor(hexadecimalString) {
     const validCharacters = ["a", "b", "c", "d", "e", "f","1","2","3","4","5","6","7","8","9"];
 
