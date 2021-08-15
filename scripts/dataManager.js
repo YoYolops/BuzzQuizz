@@ -54,8 +54,8 @@ function resetGlobalRunnigQuizzInfo(newObject) {
     }
 }
 
-function resetSecondScreenInterface() {
-    document.querySelector("#second-screen > .quizz-container").innerHTML = "";
+function resetScreenInterface(queryString) {
+    document.querySelector(queryString).innerHTML = "";
 }
 
 

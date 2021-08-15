@@ -38,11 +38,24 @@
     cursor: pointer;
 }
 
+.user-quizzes-presentation-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 0px 0px 10px 10px;
+}
+
 .section-title {
     color: black;
     font-size: 20px;
     font-weight: 700;
-    margin:0px 10px 10px 10px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.add-icon {
+    color: var(--st-red);
+    font-size: 30px;
 }
 
 .banners-container {

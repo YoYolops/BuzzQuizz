@@ -29,7 +29,7 @@ function startQuizz(quizzID) {
         answeredAmmount: 0,
     });
 
-    resetSecondScreenInterface();
+    resetScreenInterface("#second-screen > .quizz-container");
 
     switchScreen("second");
     displayQuizzQuestions(quizz);
