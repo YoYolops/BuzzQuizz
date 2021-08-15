@@ -258,7 +258,7 @@ function displayMyQuestionsBox (nQuestions) {
         <div class="pergunta-config hidden">
             <div class="pergunta">
                 <input type="text" placeholder="Titulo do Seu Quizz">
-                <input type="text" placeholder="URL da imagem do seu quizz">
+                <input type="text" placeholder="Cor de Fundo da Pergunta">
             </div>
             <div class="correct-answer">
                 <h4>Resposta Correta</h4>
