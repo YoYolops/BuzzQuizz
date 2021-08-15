@@ -250,8 +250,15 @@ function validateLevels (levels) {
 
         quizzFinished.levels = levels;
         console.log(quizzFinished);
+        upandoQuizzToServ();
         
     }else { alert("Problemas nos Campos")}
 }
 
 var quizzFinished = {};
+
+function upandoQuizzToServ () {
+    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes", quizzFinished);
+    promise.then(() => {alert("Seu Quizz foi Salvo")});
+    promise.catch(() => {alert("Nao conseguimos enviar seu quizz, tente novamente mais tarde")});
+}
