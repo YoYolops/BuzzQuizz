@@ -1,7 +1,6 @@
 void async function startApp() {
     toggleLoadingScreen();
     loadLocallyStoragedQuizzes();
-    console.log("oi")
     await getServerQuizzes();
     displayQuizzes();
 
@@ -22,7 +21,6 @@ function selectQuizz(elementWhoCalled) {
 
 function startQuizz(quizzID) {
     const quizz = searchQuizzById(quizzID);
-    
     resetGlobalRunnigQuizzInfo({
         score: 0,
         quizz: quizz,

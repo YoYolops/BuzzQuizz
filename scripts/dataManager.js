@@ -1,7 +1,6 @@
 
 async function getServerQuizzes() {
     const response = await GLOBAL.api.get("/").catch(error => {
-        console.log("Erro na requisição");
         console.log(error);
         return false;
     })
@@ -11,7 +10,6 @@ async function getServerQuizzes() {
 
 function loadLocallyStoragedQuizzes() {
     const localQuizzesIds = JSON.parse(localStorage.getItem("BuzzQuizz"));
-    console.log(localQuizzesIds);
 
     if(localQuizzesIds) {
         GLOBAL.usersQuizzesIds = localQuizzesIds.userQuizzesIds;
@@ -22,8 +20,6 @@ function loadLocallyStoragedQuizzes() {
 
 
 function storeUsersQuizzesLocally() {
-    console.log("storaging quizz locally")
-    
     const quizzesIds = GLOBAL.usersQuizzesIds;
     const storeQuizzes = JSON.stringify({ userQuizzesIds: quizzesIds });
     localStorage.setItem("BuzzQuizz", storeQuizzes);
@@ -361,6 +357,7 @@ function upandoQuizzToServ () {
 function savingmyQuizzId (quizzEnviado) {
     const meuQuizz = quizzEnviado.data;
     GLOBAL.usersQuizzesIds.push(meuQuizz.id);
+    GLOBAL.serverQuizzes.push(meuQuizz);
 
     storeUsersQuizzesLocally();
 

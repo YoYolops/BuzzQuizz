@@ -9,5 +9,5 @@ const GLOBAL = {
         quizz: {},
         answeredAmmount: 0,
     },
-    myQuizzId: 0
+    myQuizzId: 366
 }
