@@ -10,18 +10,20 @@ async function getServerQuizzes() {
 
 
 function loadLocallyStoragedQuizzes() {
-    const localQuizzes = localStorage.getItem("BuzzQuizz");
+    const localQuizzesIds = JSON.parse(localStorage.getItem("BuzzQuizz"));
+    console.log(localQuizzesIds);
 
-    if(localQuizzes) {
-        GLOBAL.usersQuizzesIds = JSON.parse(localQuizzes);
+    if(localQuizzesIds) {
+        GLOBAL.usersQuizzesIds = localQuizzesIds.userQuizzesIds;
     } else {
         GLOBAL.usersQuizzesIds = [];
     }
 }
 
 
-function storeUsersQuizzesLocally(quizz) {
-    const storeQuizzes = JSON.stringify(quizz);
+function storeUsersQuizzesLocally() {
+    const quizzesIds = GLOBAL.usersQuizzesIds;
+    const storeQuizzes = JSON.stringify({ userQuizzesIds: quizzesIds });
     localStorage.setItem("BuzzQuizz", storeQuizzes);
 }
 
