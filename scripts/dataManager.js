@@ -1,3 +1,4 @@
+
 async function getServerQuizzes() {
     const response = await GLOBAL.api.get("/").catch(error => {
         console.log("Erro na requisição");
@@ -102,6 +103,10 @@ function savingBasicQuizzInformation () {
         nLevels: Number(findBasicInformation.querySelectorAll("input")[3].value)
     }
 
+
+    quizzFinished.title = basicInformation.title;
+    quizzFinished.image = basicInformation.image;
+
     return basicInformation;
 }
 
@@ -203,6 +208,8 @@ function validateQuestions(MyQuizzQuestions) {
     });
 
     levelsScreenDisplay(questionsOk);
+
+    quizzFinished.questions = MyQuizzQuestions;
     
 }
 
@@ -239,7 +246,7 @@ function validateLevels (levels) {
             levelsOk = false;
         }
 
-        if (elemento.minValue < 0 && elemento.minValue > 100) {
+        if (elemento.minValue < 0 || elemento.minValue > 100) {
             console.log("problema value");
             levelsOk = false;
         }else if (elemento.minValue === 0){
@@ -253,11 +260,16 @@ function validateLevels (levels) {
         }
         if(isValidHttpUrl(elemento.image) ===false) {
             console.log("problema imagem");
-            questionsOk = false;
+            levelsOk = false;
         }
     });
 
     if (menorValor && levelsOk) {
-        console.log('Leveis ok, pode passar');
-    }else { console.log("deu ruim")}
+
+        quizzFinished.levels = levels;
+        console.log(quizzFinished);
+        
+    }else { alert("Problemas nos Campos")}
 }
+
+var quizzFinished = {};
