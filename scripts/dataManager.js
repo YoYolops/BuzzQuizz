@@ -32,6 +32,7 @@ async function removeQuizz(elementWhoCalled) {
 
     await requestQuizzRemoval(quizzInfo);
     refreshApp();
+    storeUsersQuizzesLocally();
 }
 
 function loadLocallyStoragedQuizzes() {
