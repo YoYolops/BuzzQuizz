@@ -7,6 +7,7 @@ void async function startApp() {
     setTimeout(() => { /* só pra tela de loading durar mais tempo na tela */
         toggleLoadingScreen();
     }, 2000)
+    console.log(GLOBAL.usersQuizzesInfo)
 }();
 
 function refreshApp() {

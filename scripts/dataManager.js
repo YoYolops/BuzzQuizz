@@ -21,14 +21,15 @@ async function removeQuizz(elementWhoCalled) {
 
     const quizzId = Number(quizzBanner.id.split("-")[1]);
     let quizzInfo;
-
-    for(quizzData of GLOBAL.usersQuizzesInfo) {
-        if(quizzData.id === quizzId || Number(quizzData.id) === quizzId) {
-            quizzInfo = quizzData;
+    let removalIndex;
+    for(let i = 0; i < GLOBAL.usersQuizzesInfo.length; i++) {
+        if(Number(GLOBAL.usersQuizzesInfo[i].id) === quizzId) {
+            quizzInfo = GLOBAL.usersQuizzesInfo[i];
+            removalIndex = i;
         }
     }
-
     await requestQuizzRemoval(quizzInfo);
+    GLOBAL.usersQuizzesInfo.pop(removalIndex);
     refreshApp();
     storeUsersQuizzesLocally();
 }
