@@ -108,8 +108,8 @@ function savingBasicQuizzInformation () {
     }
 
 
-    quizzFinished.title = basicInformation.title;
-    quizzFinished.image = basicInformation.image;
+    GLOBAL.quizzFinished.title = basicInformation.title;
+    GLOBAL.quizzFinished.image = basicInformation.image;
 
     return basicInformation;
 }
@@ -218,7 +218,7 @@ function validateQuestions(MyQuizzQuestions) {
 
     levelsScreenDisplay(questionsOk);
 
-    quizzFinished.questions = MyQuizzQuestions;
+    GLOBAL.quizzFinished.questions = MyQuizzQuestions;
     
 }
 
@@ -275,14 +275,14 @@ function validateLevels (levels) {
 
     if (menorValor && levelsOk) {
 
-        quizzFinished.levels = levels;
-        console.log(quizzFinished);
+        GLOBAL.quizzFinished.levels = levels;
+        console.log(GLOBAL.quizzFinished);
         upandoQuizzToServ();
         
     }else { alert("Problemas nos Campos")}
 }
 
-var quizzFinished = {
+    GLOBAL.quizzFinished = {
 	title: "Título do quizz",
 	image: "https://http.cat/411.jpg",
 	questions: [
@@ -353,7 +353,7 @@ var quizzFinished = {
 
 function upandoQuizzToServ () {
     toggleLoadingScreen();
-    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes", quizzFinished);
+    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes", GLOBAL.quizzFinished);
     promise.then(savingmyQuizzId);
     promise.catch(() => {alert("Nao conseguimos enviar seu quizz, tente novamente mais tarde")});
     toggleLoadingScreen();
@@ -364,13 +364,11 @@ function savingmyQuizzId (quizzEnviado) {
     GLOBAL.usersQuizzesIds.push(meuQuizz.id);
     GLOBAL.serverQuizzes.push(meuQuizz);
     GLOBAL.myQuizzId = meuQuizz.id;
+    GLOBAL.quizzRetornado = meuQuizz;
     storeUsersQuizzesLocally();
 
     quizzFinishedDisplay();
 
-    myCardThirdScreen(quizzEnviado);
-
-   
-    
+    myCardThirdScreen(GLOBAL.quizzRetornado);
     alert("Seu Quizz foi Salvo")
 }

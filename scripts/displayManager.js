@@ -330,7 +330,10 @@ function levelConfigDisplay (levelNumber) {
 function myCardThirdScreen (quizz) {
     const meuCard = generateQuizzCardHtml(quizz);
     document.querySelector(".meu-card").innerHTML = meuCard;
+    console.log(quizz)
 }
+
+
 function quizzFinishedDisplay() {
     document.querySelector("#quizz-finished-screen").classList.remove("hidden")
     document.querySelector("#level-setup-screen").className = "hidden";
