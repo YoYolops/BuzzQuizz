@@ -47,6 +47,7 @@ p {
     font-size: 37px;
     font-weight: 700;
     color: white;
+    cursor: pointer;
 }
 
 #app-container {
