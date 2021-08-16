@@ -36,6 +36,16 @@
     overflow-wrap: break-word;
 }
 
+.input-color {
+    width: 50% !important;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.input-label-color {
+    width: 50%;
+}
+
 
 .next-step-button {
     height: 54px;
