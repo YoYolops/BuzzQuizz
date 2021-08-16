@@ -7,8 +7,31 @@ async function getServerQuizzes() {
     GLOBAL.serverQuizzes = response.data;
 }
 
-async function requestQuizzRemoval() {
+async function requestQuizzRemoval(userQuizzInfo) {
+    const response = await GLOBAL.api.delete(`/${userQuizzInfo.id}`, {
+        headers: {
+            "Secret-Key": userQuizzInfo.key
+        }
+    });
+    console.log(response.data);
 
+}
+
+async function removeQuizz(elementWhoCalled) {
+    window.event.stopPropagation();
+    const quizzBanner = elementWhoCalled.parentNode.parentNode;
+
+    const quizzId = Number(quizzBanner.id.split("-")[1]);
+    let quizzInfo;
+
+    for(quizzData of GLOBAL.usersQuizzesInfo) {
+        if(quizzData.id === quizzId || Number(quizzData.id) === quizzId) {
+            quizzInfo = quizzData;
+        }
+    }
+
+    await requestQuizzRemoval(quizzInfo);
+    refreshApp();
 }
 
 

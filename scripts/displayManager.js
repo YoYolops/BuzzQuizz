@@ -19,15 +19,30 @@ function toggleLoadingScreen() {
         : loadingScreen.className = "hidden"
 }
 
-function generateQuizzCardHtml(quizz) {
+function generateQuizzCardHtml(quizz, isForUserQuizz) {
     const {title, image, id} = quizz;
-    console.log(title);
-    console.log(quizz.title);
-    const template = (
-        `<div id="quizz-${id}"  class="quizz-banner" onclick="selectQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
-            <p class="quizz-title">${title}</p>
-        </div>`
-    )
+    let template;
+    if(isForUserQuizz) {
+        template = (
+            `<div id="quizz-${id}"  class="quizz-banner" onclick="selectQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
+                <div class="user-quizz-controls-container">
+                    <div class="user-quizz-control" onclick="removeQuizz(this)">
+                        <ion-icon class="control-ico" name="trash-outline"></ion-icon>
+                    </div>
+                    <div class="user-quizz-control">
+                        <ion-icon class="control-ico"  name="create-outline"></ion-icon>
+                    </div>
+                </div>
+                <p class="quizz-title">${title}</p>
+            </div>`
+        )
+    } else {
+        template = (
+            `<div id="quizz-${id}"  class="quizz-banner" onclick="selectQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
+                <p class="quizz-title">${title}</p>
+            </div>`
+        )
+    }
     return template;
 }
 
@@ -86,7 +101,7 @@ function generateQuizAnswerBoxesHtml(answers) {
  */
 function displayQuizzes() {
     for(quizz of GLOBAL.serverQuizzes) {
-        const quizzBanner = generateQuizzCardHtml(quizz);
+        const quizzBanner = generateQuizzCardHtml(quizz, isThisAUsersQuizz(quizz.id));
         
         isThisAUsersQuizz(quizz.id)
             ? document.querySelector(".user-quizzes-section .banners-container").insertAdjacentHTML("beforeend", quizzBanner)
