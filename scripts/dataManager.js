@@ -87,7 +87,7 @@ function isValidHexadecimalColor(hexadecimalString) {
     }
 
     const conditions = [
-        hexadecimalString.length === 4 || hexadecimalString.length === 7,
+        hexadecimalString.length === 7,
         hexadecimalString[0] === '#',
     ]
 
