@@ -324,7 +324,7 @@ function levelsDisplay () {
             <input type="text" placeholder="Título do nível">
             <input type="text" placeholder="% de acerto mínima">
             <input type="text" placeholder="URL da imagem do nível">
-            <input type="text" placeholder="Descrição do nível">
+            <input type="text" class="input-description" placeholder="Descrição do nível">
         </div>
     </div>`
     }
