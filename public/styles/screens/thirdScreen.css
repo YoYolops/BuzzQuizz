@@ -20,6 +20,7 @@
 
 .main-step-quizz, .questions-setup, .levels-setup {
     width: 100%;
+    
 
 }
 
@@ -31,7 +32,10 @@
     margin-bottom: 10px;
     padding: 3%;
     outline: none;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
+
 
 .next-step-button {
     height: 54px;
@@ -79,6 +83,18 @@
 }
 
 
+@media (max-width: 1100px) {
+
+.content{
+    width: 100%;
+}
+.input-description {
+
+    height: 177px;
+}
+
+
+}
 
 
 

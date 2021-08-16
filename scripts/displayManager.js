@@ -21,6 +21,8 @@ function toggleLoadingScreen() {
 
 function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
+    console.log(title);
+    console.log(quizz.title);
     const template = (
         `<div id="quizz-${id}"  class="quizz-banner" onclick="selectQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
             <p class="quizz-title">${title}</p>
@@ -228,10 +230,17 @@ function changeToCreateQuestions () {
     }
 
     if (numCharOk && urlOk && nQuestionsOk && nLevelsOk) {
-        switchScreen('asks-about-quizz'); //Não usar switch screen para troca de componentes dentro das screens
+        asksAboutQuizzDisplay();
+        
         displayMyQuestionsBox(basicInformationQuizz.nQuestions)
     }else {alert("Preencha os campos com informacoes validas")}
 
+}
+
+function asksAboutQuizzDisplay() {
+
+    document.querySelector("#asks-about-quizz-screen").classList.remove("hidden")
+    document.querySelector("#basic-information-quizz-screen").className = "hidden";
 }
 
 function isValidHttpUrl(string) {
@@ -315,7 +324,7 @@ function levelsDisplay () {
             <input type="text" placeholder="Título do nível">
             <input type="text" placeholder="% de acerto mínima">
             <input type="text" placeholder="URL da imagem do nível">
-            <input type="text" placeholder="Descrição do nível">
+            <input type="text" class="input-description" placeholder="Descrição do nível">
         </div>
     </div>`
     }
@@ -328,12 +337,12 @@ function levelConfigDisplay (levelNumber) {
 function myCardThirdScreen (quizz) {
     const meuCard = generateQuizzCardHtml(quizz);
     document.querySelector(".meu-card").innerHTML = meuCard;
+    console.log(quizz)
 }
+
+
 function quizzFinishedDisplay() {
     document.querySelector("#quizz-finished-screen").classList.remove("hidden")
     document.querySelector("#level-setup-screen").className = "hidden";
 }
 
-function seeMyQuizz() {
-    startQuizz(GLOBAL.myQuizzId);
-}

@@ -93,7 +93,7 @@ function isValidHexadecimalColor(hexadecimalString) {
 
     for(condition of conditions) { if(!condition) return false; }
 
-    return true;
+    
 }
 
 
@@ -108,8 +108,8 @@ function savingBasicQuizzInformation () {
     }
 
 
-    quizzFinished.title = basicInformation.title;
-    quizzFinished.image = basicInformation.image;
+    GLOBAL.quizzFinished.title = basicInformation.title;
+    GLOBAL.quizzFinished.image = basicInformation.image;
 
     return basicInformation;
 }
@@ -195,6 +195,11 @@ function validateQuestions(MyQuizzQuestions) {
             console.log("erro no titulo");
             questionsOk = false;
         }
+
+        if(isValidHexadecimalColor(elemento.color) === false) {
+            questionsOk = false;
+            console.log("Erro na color")
+        }
         
         elemento.answers.forEach((resposta) => {
             if(resposta.text.length === 0) {
@@ -213,7 +218,7 @@ function validateQuestions(MyQuizzQuestions) {
 
     levelsScreenDisplay(questionsOk);
 
-    quizzFinished.questions = MyQuizzQuestions;
+    GLOBAL.quizzFinished.questions = MyQuizzQuestions;
     
 }
 
@@ -270,14 +275,14 @@ function validateLevels (levels) {
 
     if (menorValor && levelsOk) {
 
-        quizzFinished.levels = levels;
-        console.log(quizzFinished);
+        GLOBAL.quizzFinished.levels = levels;
+        console.log(GLOBAL.quizzFinished);
         upandoQuizzToServ();
         
     }else { alert("Problemas nos Campos")}
 }
 
-var quizzFinished = {
+    GLOBAL.quizzFinished = {
 	title: "Título do quizz",
 	image: "https://http.cat/411.jpg",
 	questions: [
@@ -348,7 +353,7 @@ var quizzFinished = {
 
 function upandoQuizzToServ () {
     toggleLoadingScreen();
-    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes", quizzFinished);
+    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes", GLOBAL.quizzFinished);
     promise.then(savingmyQuizzId);
     promise.catch(() => {alert("Nao conseguimos enviar seu quizz, tente novamente mais tarde")});
     toggleLoadingScreen();
@@ -358,12 +363,12 @@ function savingmyQuizzId (quizzEnviado) {
     const meuQuizz = quizzEnviado.data;
     GLOBAL.usersQuizzesIds.push(meuQuizz.id);
     GLOBAL.serverQuizzes.push(meuQuizz);
-
+    GLOBAL.myQuizzId = meuQuizz.id;
+    GLOBAL.quizzRetornado = meuQuizz;
     storeUsersQuizzesLocally();
 
-    myCardThirdScreen(quizzEnviado);
+    quizzFinishedDisplay();
 
-    GLOBAL.myQuizzId = meuQuizz.id;
-    
+    myCardThirdScreen(GLOBAL.quizzRetornado);
     alert("Seu Quizz foi Salvo")
 }
