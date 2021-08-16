@@ -230,10 +230,17 @@ function changeToCreateQuestions () {
     }
 
     if (numCharOk && urlOk && nQuestionsOk && nLevelsOk) {
-        switchScreen('asks-about-quizz'); //Não usar switch screen para troca de componentes dentro das screens
+        asksAboutQuizzDisplay();
+        
         displayMyQuestionsBox(basicInformationQuizz.nQuestions)
     }else {alert("Preencha os campos com informacoes validas")}
 
+}
+
+function asksAboutQuizzDisplay() {
+
+    document.querySelector("#asks-about-quizz-screen").classList.remove("hidden")
+    document.querySelector("#basic-information-quizz-screen").className = "hidden";
 }
 
 function isValidHttpUrl(string) {
