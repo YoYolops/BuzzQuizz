@@ -8,13 +8,11 @@ async function getServerQuizzes() {
 }
 
 async function requestQuizzRemoval(userQuizzInfo) {
-    const response = await GLOBAL.api.delete(`/${userQuizzInfo.id}`, {
+    await GLOBAL.api.delete(`/${userQuizzInfo.id}`, {
         headers: {
             "Secret-Key": userQuizzInfo.key
         }
     });
-    console.log(response.data);
-
 }
 
 async function removeQuizz(elementWhoCalled) {
