@@ -93,7 +93,7 @@ function isValidHexadecimalColor(hexadecimalString) {
 
     for(condition of conditions) { if(!condition) return false; }
 
-    return true;
+    
 }
 
 
@@ -194,6 +194,11 @@ function validateQuestions(MyQuizzQuestions) {
         if(elemento.title.length < 20) {
             console.log("erro no titulo");
             questionsOk = false;
+        }
+
+        if(isValidHexadecimalColor(elemento.color) === false) {
+            questionsOk = false;
+            console.log("Erro na color")
         }
         
         elemento.answers.forEach((resposta) => {
@@ -358,12 +363,14 @@ function savingmyQuizzId (quizzEnviado) {
     const meuQuizz = quizzEnviado.data;
     GLOBAL.usersQuizzesIds.push(meuQuizz.id);
     GLOBAL.serverQuizzes.push(meuQuizz);
-
+    GLOBAL.myQuizzId = meuQuizz.id;
     storeUsersQuizzesLocally();
+
+    quizzFinishedDisplay();
 
     myCardThirdScreen(quizzEnviado);
 
-    GLOBAL.myQuizzId = meuQuizz.id;
+   
     
     alert("Seu Quizz foi Salvo")
 }

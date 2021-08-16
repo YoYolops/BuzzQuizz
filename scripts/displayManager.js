@@ -21,6 +21,8 @@ function toggleLoadingScreen() {
 
 function generateQuizzCardHtml(quizz) {
     const {title, image, id} = quizz;
+    console.log(title);
+    console.log(quizz.title);
     const template = (
         `<div id="quizz-${id}"  class="quizz-banner" onclick="selectQuizz(this)"  style="background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(251,251,251,0) 60%), url(${image}) no-repeat; background-size: cover; background-repeat: no-repeat; background-position: center">
             <p class="quizz-title">${title}</p>
@@ -334,6 +336,3 @@ function quizzFinishedDisplay() {
     document.querySelector("#level-setup-screen").className = "hidden";
 }
 
-function seeMyQuizz() {
-    startQuizz(GLOBAL.myQuizzId);
-}
