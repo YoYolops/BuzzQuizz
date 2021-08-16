@@ -10,7 +10,6 @@ const GLOBAL = {
         answeredAmmount: 0,
     },
     myQuizzId: 366,
-
     quizzFinished:{},
     quizzRetornado:{}
 

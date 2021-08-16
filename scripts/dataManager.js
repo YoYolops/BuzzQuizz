@@ -7,20 +7,24 @@ async function getServerQuizzes() {
     GLOBAL.serverQuizzes = response.data;
 }
 
+async function requestQuizzRemoval() {
+
+}
+
 
 function loadLocallyStoragedQuizzes() {
     const localQuizzesIds = JSON.parse(localStorage.getItem("BuzzQuizz"));
 
     if(localQuizzesIds) {
-        GLOBAL.usersQuizzesIds = localQuizzesIds.userQuizzesIds;
+        GLOBAL.usersQuizzesInfo = localQuizzesIds.userQuizzesIds;
     } else {
-        GLOBAL.usersQuizzesIds = [];
+        GLOBAL.usersQuizzesInfo = [];
     }
 }
 
 
 function storeUsersQuizzesLocally() {
-    const quizzesIds = GLOBAL.usersQuizzesIds;
+    const quizzesIds = GLOBAL.usersQuizzesInfo;
     const storeQuizzes = JSON.stringify({ userQuizzesIds: quizzesIds });
     localStorage.setItem("BuzzQuizz", storeQuizzes);
 }
@@ -361,14 +365,14 @@ function upandoQuizzToServ () {
 
 function savingmyQuizzId (quizzEnviado) {
     const meuQuizz = quizzEnviado.data;
-    GLOBAL.usersQuizzesIds.push(meuQuizz.id);
+
+    GLOBAL.usersQuizzesInfo.push({id: meuQuizz.id, key: meuQuizz.key});
     GLOBAL.serverQuizzes.push(meuQuizz);
     GLOBAL.myQuizzId = meuQuizz.id;
     GLOBAL.quizzRetornado = meuQuizz;
+
     storeUsersQuizzesLocally();
-
     quizzFinishedDisplay();
-
     myCardThirdScreen(GLOBAL.quizzRetornado);
     alert("Seu Quizz foi Salvo")
 }

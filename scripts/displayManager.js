@@ -101,8 +101,8 @@ function displayQuizzes() {
  * @return {boolean} true with it matches, false otherwise
  */
 function isThisAUsersQuizz(quizzID) {
-    for(id of GLOBAL.usersQuizzesIds) {
-        if(id === quizzID) return true;
+    for(userQuizzInfo of GLOBAL.usersQuizzesInfo) {
+        if(userQuizzInfo.id === quizzID) return true;
     }
     return false;
 }
@@ -112,7 +112,7 @@ function isThisAUsersQuizz(quizzID) {
  * Check with there are any users quizzes registered, displaying the appropriate one
  */
 function manageEmptyUsersQuizzInterface() {
-    if(GLOBAL.usersQuizzesIds.length === 0) {
+    if(GLOBAL.usersQuizzesInfo.length === 0) {
         document.querySelector(".user-quizzes-section").className = "hidden";
         document.querySelector("#empty-user-quizz").className = "";
     } else {
