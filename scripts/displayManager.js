@@ -221,8 +221,66 @@ function displayEndingBanner() {
 
 /*Third-screen*/
 
-/*Change to create-questions*/
+function isValidHttpUrl(string) {
+    let url;
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+}
 
+function asksAboutQuizzDisplay() {
+    document.querySelector("#asks-about-quizz-screen").classList.remove("hidden")
+    document.querySelector("#basic-information-quizz-screen").className = "hidden";
+}
+
+function perguntaConfigDisplay (elemento, questionNumber) {
+    document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("hidden");
+    document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("showing");
+
+}
+
+function displayMyQuestionsBox (nQuestions) {
+    const questionBoxLocal = document.querySelector("#asks-about-quizz-screen .questions-setup");
+  for(let i=1; i<=nQuestions;i++) {
+      questionBoxLocal.innerHTML += `<div class="pergunta-create-${i}">
+      <div class="pergunta-box " onclick="perguntaConfigDisplay(this, ${i})">
+          <h4>Pergunta ${i}</h4>
+          <ion-icon name="create-outline"></ion-icon>
+      </div>
+      <div class="pergunta-config hidden">
+          <div class="pergunta">
+              <input type="text" placeholder="Titulo do Seu Quizz">
+              <label class="input-label-color">Cor de Fundo</label><input class="input-color"  type="color">
+          </div>
+          <div class="correct-answer">
+              <h4>Resposta Correta</h4>
+              <input type="text" placeholder="Resposta correta">
+              <input type="text" placeholder="URL da imagem">
+          </div>
+          <div class="wrong-answers">
+              <h4>Respostas incorretas</h4>
+              <input type="text" placeholder="Resposta incorreta 1">
+              <input type="text" placeholder="URL da imagem 1">
+              <br>
+              <br>
+              <input type="text" placeholder="Resposta incorreta 2">
+              <input type="text" placeholder="URL da imagem 2">
+              <br>
+              <br>
+              <input type="text" placeholder="Resposta incorreta 3">
+              <input type="text" placeholder="URL da imagem 3">
+          </div>
+      </div>
+  </div>`
+  }
+}
+/**
+ * Check if the created basic quizz information are valid, then, display the create-question-screen
+ */
 function changeToCreateQuestions () {
     const basicInformationQuizz = savingBasicQuizzInformation();
     let numCharOk;
@@ -234,8 +292,7 @@ function changeToCreateQuestions () {
         numCharOk = true;
     }
     if (isValidHttpUrl(basicInformationQuizz.image)) {
-        urlOk = true;
-        
+        urlOk = true;  
     }
     if (basicInformationQuizz.nQuestions >=3) {
         nQuestionsOk = true;
@@ -243,85 +300,18 @@ function changeToCreateQuestions () {
     if (basicInformationQuizz.nLevels >=2) {
         nLevelsOk = true;
     }
-
     if (numCharOk && urlOk && nQuestionsOk && nLevelsOk) {
         asksAboutQuizzDisplay();
-        
         displayMyQuestionsBox(basicInformationQuizz.nQuestions)
     }else {alert("Preencha os campos com informacoes validas")}
-
 }
 
-function asksAboutQuizzDisplay() {
+/*ABOUT LEVEL SCREEN*/
 
-    document.querySelector("#asks-about-quizz-screen").classList.remove("hidden")
-    document.querySelector("#basic-information-quizz-screen").className = "hidden";
-}
-
-function isValidHttpUrl(string) {
-    let url;
-    
-    try {
-      url = new URL(string);
-    } catch (_) {
-      return false;  
-    }
-  
-    return url.protocol === "http:" || url.protocol === "https:";
-}
-
-
-function displayMyQuestionsBox (nQuestions) {
-      const questionBoxLocal = document.querySelector("#asks-about-quizz-screen .questions-setup");
-    for(let i=1; i<=nQuestions;i++) {
-        questionBoxLocal.innerHTML += `<div class="pergunta-create-${i}">
-        <div class="pergunta-box " onclick="perguntaConfigDisplay(this, ${i})">
-            <h4>Pergunta ${i}</h4>
-            <ion-icon name="create-outline"></ion-icon>
-        </div>
-        <div class="pergunta-config hidden">
-            <div class="pergunta">
-                <input type="text" placeholder="Titulo do Seu Quizz">
-                <label class="input-label-color">Cor de Fundo</label><input class="input-color"  type="color">
-            </div>
-            <div class="correct-answer">
-                <h4>Resposta Correta</h4>
-                <input type="text" placeholder="Resposta correta">
-                <input type="text" placeholder="URL da imagem">
-            </div>
-            <div class="wrong-answers">
-                <h4>Respostas incorretas</h4>
-                <input type="text" placeholder="Resposta incorreta 1">
-                <input type="text" placeholder="URL da imagem 1">
-                <br>
-                <br>
-                <input type="text" placeholder="Resposta incorreta 2">
-                <input type="text" placeholder="URL da imagem 2">
-                <br>
-                <br>
-                <input type="text" placeholder="Resposta incorreta 3">
-                <input type="text" placeholder="URL da imagem 3">
-            </div>
-        </div>
-    </div>`
-    }
-
-}
-
-function perguntaConfigDisplay (elemento, questionNumber) {
-      document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("hidden");
-      document.querySelector(`.pergunta-create-${questionNumber} .pergunta-config`).classList.toggle("showing");
-
-}
-
-function levelsScreenDisplay (questionsOk) {
-    if (questionsOk ===true) {
-        document.querySelector("#level-setup-screen").classList.remove("hidden")
-        document.querySelector("#asks-about-quizz-screen").className = "hidden";
-        levelsDisplay();
-    }else{alert("Problemas nos campos")}
-
-}
+function levelConfigDisplay (levelNumber) {
+    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("hidden");
+    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("showing");
+} 
 
 function levelsDisplay () {
     const basicInformationQuizz = savingBasicQuizzInformation();
@@ -344,10 +334,15 @@ function levelsDisplay () {
     </div>`
     }
 }
-function levelConfigDisplay (levelNumber) {
-    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("hidden");
-    document.querySelector(`.level-create-${levelNumber} .level-config`).classList.toggle("showing");
-} 
+
+function levelsScreenDisplay (questionsOk) {
+    if (questionsOk ===true) {
+        document.querySelector("#level-setup-screen").classList.remove("hidden")
+        document.querySelector("#asks-about-quizz-screen").className = "hidden";
+        levelsDisplay();
+    }else{alert("Problemas nos campos")}
+
+}
 
 function myCardThirdScreen (quizz) {
     const meuCard = generateQuizzCardHtml(quizz);

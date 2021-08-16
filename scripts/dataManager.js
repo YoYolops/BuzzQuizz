@@ -34,7 +34,6 @@ async function removeQuizz(elementWhoCalled) {
     refreshApp();
 }
 
-
 function loadLocallyStoragedQuizzes() {
     const localQuizzesIds = JSON.parse(localStorage.getItem("BuzzQuizz"));
 
@@ -44,7 +43,6 @@ function loadLocallyStoragedQuizzes() {
         GLOBAL.usersQuizzesInfo = [];
     }
 }
-
 
 function storeUsersQuizzesLocally() {
     const quizzesIds = GLOBAL.usersQuizzesInfo;
@@ -81,10 +79,9 @@ function resetScreenInterface(queryString) {
     document.querySelector(queryString).innerHTML = "";
 }
 
-
 /** 
  * Fisher-Yates algorithm, wich randomly shuffles an array (https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
- * @param {String[]} array the array that will me shuffled
+ * @param {String[]} array the array that will be shuffled
  * @param {Number} length how many items must be shuffled
  * @return {String[]} the shuffled array with the specified length
  */
@@ -99,6 +96,30 @@ function resetScreenInterface(queryString) {
         inputArrayCopy.splice(selectedIndex, 1);
     }
     return shuffledArray;
+}
+
+/** 
+ * Manufacture the necessary data to display the ending banner, based on users hits
+ * @return {object} all the data needed to render the final stats
+ */
+ function manufactureEndingQuizzData() {
+    const score = GLOBAL.runningQuizzInfo.score;
+    const questionsAmmount = GLOBAL.runningQuizzInfo.quizz.questions.length;
+    const hitPercentage = Math.floor((100/questionsAmmount) * score);
+
+    let properLevel;
+    for(level of GLOBAL.runningQuizzInfo.quizz.levels) {
+        if(hitPercentage >= Number(level.minValue)) { properLevel = level }
+        else { break };
+    }
+
+    properLevel = properLevel || GLOBAL.runningQuizzInfo.quizz.levels[0]; // if not achieved any goal, return the first level by default
+
+    return ({
+        title: `${hitPercentage}% de acerto: ${properLevel.title}`,
+        image: properLevel.image,
+        text: properLevel.text,
+    })
 }
 
 /** 
@@ -118,12 +139,13 @@ function isValidHexadecimalColor(hexadecimalString) {
         hexadecimalString[0] === '#',
     ]
 
-    for(condition of conditions) { if(!condition) return false; }
-
-    
+    for(condition of conditions) { if(!condition) return false; }  
 }
 
-
+/** 
+ * Save some information about quizz
+ * @return {object} basics information aboout the created Quizz
+ */
 function savingBasicQuizzInformation () {
     const findBasicInformation = document.querySelector("#basic-information-quizz-screen .main-step-quizz ");
 
@@ -134,20 +156,49 @@ function savingBasicQuizzInformation () {
         nLevels: Number(findBasicInformation.querySelectorAll("input")[3].value)
     }
 
-
     GLOBAL.quizzFinished.title = basicInformation.title;
     GLOBAL.quizzFinished.image = basicInformation.image;
 
     return basicInformation;
 }
 
+function validateQuestions(MyQuizzQuestions) {
+
+    let questionsOk = true;
+    MyQuizzQuestions.forEach((elemento) => {
+          
+        if(elemento.title.length < 20) {
+            console.log("erro no titulo");
+            questionsOk = false;
+        }
+        if(isValidHexadecimalColor(elemento.color) === false) {
+            questionsOk = false;
+            console.log("Erro na color")
+        }
+        elemento.answers.forEach((resposta) => {
+            if(resposta.text.length === 0) {
+                console.log("erro texto");
+                questionsOk = false;
+            }
+            if(isValidHttpUrl(resposta.image) ===false) {
+                console.log("erro na imagem");
+                questionsOk = false;
+            }
+        }
+        ) 
+    });
+    levelsScreenDisplay(questionsOk);
+    GLOBAL.quizzFinished.questions = MyQuizzQuestions;
+}
+/** 
+ * Save the questions of created Quizz
+ */
 function savingQuizzQuestions () {
     let nQuestions = savingBasicQuizzInformation ().nQuestions;
     const MyQuizzQuestions = [];
     let questions = [];
     let answers =[];
     const findMyQuizzQuestions = document.querySelector(".questions-setup");
-    
     
     for(let i=1; i<= nQuestions ; i++) {
 
@@ -173,102 +224,18 @@ function savingQuizzQuestions () {
             }
             if (wrongAnswer.text !=='' || wrongAnswer.image !=='') {
                 answers.push(wrongAnswer);
-            }
-            
+            }    
         }
         questions = {
                 title: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .pergunta input`)[0].value,
                 color: findMyQuizzQuestions.querySelectorAll(`.pergunta-create-${i} .pergunta input`)[1].value,
                 answers: answers
                 }
-            
-
         MyQuizzQuestions.push(questions)
     }
-    console.log(MyQuizzQuestions);
     validateQuestions(MyQuizzQuestions);
 }
 
-/** 
- * Manufacture the necessary data to display the ending banner, based on users hits
- * @return {object} all the data needed to render the final stats
- */
-function manufactureEndingQuizzData() {
-    const score = GLOBAL.runningQuizzInfo.score;
-    const questionsAmmount = GLOBAL.runningQuizzInfo.quizz.questions.length;
-    const hitPercentage = Math.floor((100/questionsAmmount) * score);
-
-    let properLevel;
-    for(level of GLOBAL.runningQuizzInfo.quizz.levels) {
-        if(hitPercentage >= Number(level.minValue)) { properLevel = level }
-        else { break };
-    }
-
-    properLevel = properLevel || GLOBAL.runningQuizzInfo.quizz.levels[0]; // if not achieved any goal, return the first level by default
-
-    return ({
-        title: `${hitPercentage}% de acerto: ${properLevel.title}`,
-        image: properLevel.image,
-        text: properLevel.text,
-    })
-}
-
-function validateQuestions(MyQuizzQuestions) {
-
-    let questionsOk = true;
-    MyQuizzQuestions.forEach((elemento) => {
-          
-        if(elemento.title.length < 20) {
-            console.log("erro no titulo");
-            questionsOk = false;
-        }
-
-        if(isValidHexadecimalColor(elemento.color) === false) {
-            questionsOk = false;
-            console.log("Erro na color")
-        }
-        
-        elemento.answers.forEach((resposta) => {
-            if(resposta.text.length === 0) {
-                console.log("erro texto");
-                questionsOk = false;
-            }
-            if(isValidHttpUrl(resposta.image) ===false) {
-                console.log("erro na imagem");
-                questionsOk = false;
-            }
-        }
-        )
-        
-        
-    });
-
-    levelsScreenDisplay(questionsOk);
-
-    GLOBAL.quizzFinished.questions = MyQuizzQuestions;
-    
-}
-
-function savingQuizzLevels () {
-    let nLevels = savingBasicQuizzInformation ().nLevels;
-    let levels = [];
-    let level;
-    const findMyQuizzLevels = document.querySelector(".levels-setup");
-
-    for(let i=1; i<= nLevels ; i++) {
-
-        level = {
-			title: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[0].value,
-			image: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[2].value,
-			text: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[3].value,
-			minValue: Number(findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[1].value)
-		}
-        levels.push(level);
-    }
-    console.log(levels);
-    validateLevels(levels);
-
-}
 
 function validateLevels (levels) {
 
@@ -299,83 +266,31 @@ function validateLevels (levels) {
             levelsOk = false;
         }
     });
-
     if (menorValor && levelsOk) {
 
         GLOBAL.quizzFinished.levels = levels;
         console.log(GLOBAL.quizzFinished);
         upandoQuizzToServ();
-        
     }else { alert("Problemas nos Campos")}
 }
 
-    GLOBAL.quizzFinished = {
-	title: "Título do quizz",
-	image: "https://http.cat/411.jpg",
-	questions: [
-		{
-			title: "Título da pergunta 1",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		},
-		{
-			title: "Título da pergunta 2",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		},
-		{
-			title: "Título da pergunta 3",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
+function savingQuizzLevels () {
+    let nLevels = savingBasicQuizzInformation ().nLevels;
+    let levels = [];
+    let level;
+    const findMyQuizzLevels = document.querySelector(".levels-setup");
+
+    for(let i=1; i<= nLevels ; i++) {
+        level = {
+			title: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[0].value,
+			image: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[2].value,
+			text: findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[3].value,
+			minValue: Number(findMyQuizzLevels.querySelectorAll(`.level-create-${i} .level-config input`)[1].value)
 		}
-	],
-	levels: [
-		{
-			title: "Título do nível 1",
-			image: "https://http.cat/411.jpg",
-			text: "Descrição do nível 1",
-			minValue: 0
-		},
-		{
-			title: "Título do nível 2",
-			image: "https://http.cat/412.jpg",
-			text: "Descrição do nível 2",
-			minValue: 50
-		}
-	]
+        levels.push(level);
+    }
+    console.log(levels);
+    validateLevels(levels);
 }
 
 function upandoQuizzToServ () {
@@ -386,6 +301,10 @@ function upandoQuizzToServ () {
     toggleLoadingScreen();
 }
 
+/** 
+*Save the Id that was created and call the functions to create the last screen
+*@param {object} quizzEnviado Quizz created received by Server
+*/
 function savingmyQuizzId (quizzEnviado) {
     const meuQuizz = quizzEnviado.data;
 
